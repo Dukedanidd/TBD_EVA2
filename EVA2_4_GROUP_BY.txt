@@ -1,0 +1,2238 @@
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 11
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd_e2;
+Default schema set to `tbd_e2`.
+Fetching global names, object names from `tbd_e2` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_e2  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| empresa            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_automovil      |
+| tbd_e2             |
+| tbd_el             |
+| world              |
++--------------------+
+10 rows in set (0.0038 sec)
+ MySQL  localhost:3306 ssl  tbd_e2  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL > show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > desc actor;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0098 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count (*) from actor;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from actor' at line 1
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) from actor;
++----------+
+| count(*) |
++----------+
+|      200 |
++----------+
+1 row in set (0.0262 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select * from actor;
++----------+-------------+--------------+---------------------+
+| actor_id | first_name  | last_name    | last_update         |
++----------+-------------+--------------+---------------------+
+|        1 | PENELOPE    | GUINESS      | 2006-02-15 04:34:33 |
+|        2 | NICK        | WAHLBERG     | 2006-02-15 04:34:33 |
+|        3 | ED          | CHASE        | 2006-02-15 04:34:33 |
+|        4 | JENNIFER    | DAVIS        | 2006-02-15 04:34:33 |
+|        5 | JOHNNY      | LOLLOBRIGIDA | 2006-02-15 04:34:33 |
+|        6 | BETTE       | NICHOLSON    | 2006-02-15 04:34:33 |
+|        7 | GRACE       | MOSTEL       | 2006-02-15 04:34:33 |
+|        8 | MATTHEW     | JOHANSSON    | 2006-02-15 04:34:33 |
+|        9 | JOE         | SWANK        | 2006-02-15 04:34:33 |
+|       10 | CHRISTIAN   | GABLE        | 2006-02-15 04:34:33 |
+|       11 | ZERO        | CAGE         | 2006-02-15 04:34:33 |
+|       12 | KARL        | BERRY        | 2006-02-15 04:34:33 |
+|       13 | UMA         | WOOD         | 2006-02-15 04:34:33 |
+|       14 | VIVIEN      | BERGEN       | 2006-02-15 04:34:33 |
+|       15 | CUBA        | OLIVIER      | 2006-02-15 04:34:33 |
+|       16 | FRED        | COSTNER      | 2006-02-15 04:34:33 |
+|       17 | HELEN       | VOIGHT       | 2006-02-15 04:34:33 |
+|       18 | DAN         | TORN         | 2006-02-15 04:34:33 |
+|       19 | BOB         | FAWCETT      | 2006-02-15 04:34:33 |
+|       20 | LUCILLE     | TRACY        | 2006-02-15 04:34:33 |
+|       21 | KIRSTEN     | PALTROW      | 2006-02-15 04:34:33 |
+|       22 | ELVIS       | MARX         | 2006-02-15 04:34:33 |
+|       23 | SANDRA      | KILMER       | 2006-02-15 04:34:33 |
+|       24 | CAMERON     | STREEP       | 2006-02-15 04:34:33 |
+|       25 | KEVIN       | BLOOM        | 2006-02-15 04:34:33 |
+|       26 | RIP         | CRAWFORD     | 2006-02-15 04:34:33 |
+|       27 | JULIA       | MCQUEEN      | 2006-02-15 04:34:33 |
+|       28 | WOODY       | HOFFMAN      | 2006-02-15 04:34:33 |
+|       29 | ALEC        | WAYNE        | 2006-02-15 04:34:33 |
+|       30 | SANDRA      | PECK         | 2006-02-15 04:34:33 |
+|       31 | SISSY       | SOBIESKI     | 2006-02-15 04:34:33 |
+|       32 | TIM         | HACKMAN      | 2006-02-15 04:34:33 |
+|       33 | MILLA       | PECK         | 2006-02-15 04:34:33 |
+|       34 | AUDREY      | OLIVIER      | 2006-02-15 04:34:33 |
+|       35 | JUDY        | DEAN         | 2006-02-15 04:34:33 |
+|       36 | BURT        | DUKAKIS      | 2006-02-15 04:34:33 |
+|       37 | VAL         | BOLGER       | 2006-02-15 04:34:33 |
+|       38 | TOM         | MCKELLEN     | 2006-02-15 04:34:33 |
+|       39 | GOLDIE      | BRODY        | 2006-02-15 04:34:33 |
+|       40 | JOHNNY      | CAGE         | 2006-02-15 04:34:33 |
+|       41 | JODIE       | DEGENERES    | 2006-02-15 04:34:33 |
+|       42 | TOM         | MIRANDA      | 2006-02-15 04:34:33 |
+|       43 | KIRK        | JOVOVICH     | 2006-02-15 04:34:33 |
+|       44 | NICK        | STALLONE     | 2006-02-15 04:34:33 |
+|       45 | REESE       | KILMER       | 2006-02-15 04:34:33 |
+|       46 | PARKER      | GOLDBERG     | 2006-02-15 04:34:33 |
+|       47 | JULIA       | BARRYMORE    | 2006-02-15 04:34:33 |
+|       48 | FRANCES     | DAY-LEWIS    | 2006-02-15 04:34:33 |
+|       49 | ANNE        | CRONYN       | 2006-02-15 04:34:33 |
+|       50 | NATALIE     | HOPKINS      | 2006-02-15 04:34:33 |
+|       51 | GARY        | PHOENIX      | 2006-02-15 04:34:33 |
+|       52 | CARMEN      | HUNT         | 2006-02-15 04:34:33 |
+|       53 | MENA        | TEMPLE       | 2006-02-15 04:34:33 |
+|       54 | PENELOPE    | PINKETT      | 2006-02-15 04:34:33 |
+|       55 | FAY         | KILMER       | 2006-02-15 04:34:33 |
+|       56 | DAN         | HARRIS       | 2006-02-15 04:34:33 |
+|       57 | JUDE        | CRUISE       | 2006-02-15 04:34:33 |
+|       58 | CHRISTIAN   | AKROYD       | 2006-02-15 04:34:33 |
+|       59 | DUSTIN      | TAUTOU       | 2006-02-15 04:34:33 |
+|       60 | HENRY       | BERRY        | 2006-02-15 04:34:33 |
+|       61 | CHRISTIAN   | NEESON       | 2006-02-15 04:34:33 |
+|       62 | JAYNE       | NEESON       | 2006-02-15 04:34:33 |
+|       63 | CAMERON     | WRAY         | 2006-02-15 04:34:33 |
+|       64 | RAY         | JOHANSSON    | 2006-02-15 04:34:33 |
+|       65 | ANGELA      | HUDSON       | 2006-02-15 04:34:33 |
+|       66 | MARY        | TANDY        | 2006-02-15 04:34:33 |
+|       67 | JESSICA     | BAILEY       | 2006-02-15 04:34:33 |
+|       68 | RIP         | WINSLET      | 2006-02-15 04:34:33 |
+|       69 | KENNETH     | PALTROW      | 2006-02-15 04:34:33 |
+|       70 | MICHELLE    | MCCONAUGHEY  | 2006-02-15 04:34:33 |
+|       71 | ADAM        | GRANT        | 2006-02-15 04:34:33 |
+|       72 | SEAN        | WILLIAMS     | 2006-02-15 04:34:33 |
+|       73 | GARY        | PENN         | 2006-02-15 04:34:33 |
+|       74 | MILLA       | KEITEL       | 2006-02-15 04:34:33 |
+|       75 | BURT        | POSEY        | 2006-02-15 04:34:33 |
+|       76 | ANGELINA    | ASTAIRE      | 2006-02-15 04:34:33 |
+|       77 | CARY        | MCCONAUGHEY  | 2006-02-15 04:34:33 |
+|       78 | GROUCHO     | SINATRA      | 2006-02-15 04:34:33 |
+|       79 | MAE         | HOFFMAN      | 2006-02-15 04:34:33 |
+|       80 | RALPH       | CRUZ         | 2006-02-15 04:34:33 |
+|       81 | SCARLETT    | DAMON        | 2006-02-15 04:34:33 |
+|       82 | WOODY       | JOLIE        | 2006-02-15 04:34:33 |
+|       83 | BEN         | WILLIS       | 2006-02-15 04:34:33 |
+|       84 | JAMES       | PITT         | 2006-02-15 04:34:33 |
+|       85 | MINNIE      | ZELLWEGER    | 2006-02-15 04:34:33 |
+|       86 | GREG        | CHAPLIN      | 2006-02-15 04:34:33 |
+|       87 | SPENCER     | PECK         | 2006-02-15 04:34:33 |
+|       88 | KENNETH     | PESCI        | 2006-02-15 04:34:33 |
+|       89 | CHARLIZE    | DENCH        | 2006-02-15 04:34:33 |
+|       90 | SEAN        | GUINESS      | 2006-02-15 04:34:33 |
+|       91 | CHRISTOPHER | BERRY        | 2006-02-15 04:34:33 |
+|       92 | KIRSTEN     | AKROYD       | 2006-02-15 04:34:33 |
+|       93 | ELLEN       | PRESLEY      | 2006-02-15 04:34:33 |
+|       94 | KENNETH     | TORN         | 2006-02-15 04:34:33 |
+|       95 | DARYL       | WAHLBERG     | 2006-02-15 04:34:33 |
+|       96 | GENE        | WILLIS       | 2006-02-15 04:34:33 |
+|       97 | MEG         | HAWKE        | 2006-02-15 04:34:33 |
+|       98 | CHRIS       | BRIDGES      | 2006-02-15 04:34:33 |
+|       99 | JIM         | MOSTEL       | 2006-02-15 04:34:33 |
+|      100 | SPENCER     | DEPP         | 2006-02-15 04:34:33 |
+|      101 | SUSAN       | DAVIS        | 2006-02-15 04:34:33 |
+|      102 | WALTER      | TORN         | 2006-02-15 04:34:33 |
+|      103 | MATTHEW     | LEIGH        | 2006-02-15 04:34:33 |
+|      104 | PENELOPE    | CRONYN       | 2006-02-15 04:34:33 |
+|      105 | SIDNEY      | CROWE        | 2006-02-15 04:34:33 |
+|      106 | GROUCHO     | DUNST        | 2006-02-15 04:34:33 |
+|      107 | GINA        | DEGENERES    | 2006-02-15 04:34:33 |
+|      108 | WARREN      | NOLTE        | 2006-02-15 04:34:33 |
+|      109 | SYLVESTER   | DERN         | 2006-02-15 04:34:33 |
+|      110 | SUSAN       | DAVIS        | 2006-02-15 04:34:33 |
+|      111 | CAMERON     | ZELLWEGER    | 2006-02-15 04:34:33 |
+|      112 | RUSSELL     | BACALL       | 2006-02-15 04:34:33 |
+|      113 | MORGAN      | HOPKINS      | 2006-02-15 04:34:33 |
+|      114 | MORGAN      | MCDORMAND    | 2006-02-15 04:34:33 |
+|      115 | HARRISON    | BALE         | 2006-02-15 04:34:33 |
+|      116 | DAN         | STREEP       | 2006-02-15 04:34:33 |
+|      117 | RENEE       | TRACY        | 2006-02-15 04:34:33 |
+|      118 | CUBA        | ALLEN        | 2006-02-15 04:34:33 |
+|      119 | WARREN      | JACKMAN      | 2006-02-15 04:34:33 |
+|      120 | PENELOPE    | MONROE       | 2006-02-15 04:34:33 |
+|      121 | LIZA        | BERGMAN      | 2006-02-15 04:34:33 |
+|      122 | SALMA       | NOLTE        | 2006-02-15 04:34:33 |
+|      123 | JULIANNE    | DENCH        | 2006-02-15 04:34:33 |
+|      124 | SCARLETT    | BENING       | 2006-02-15 04:34:33 |
+|      125 | ALBERT      | NOLTE        | 2006-02-15 04:34:33 |
+|      126 | FRANCES     | TOMEI        | 2006-02-15 04:34:33 |
+|      127 | KEVIN       | GARLAND      | 2006-02-15 04:34:33 |
+|      128 | CATE        | MCQUEEN      | 2006-02-15 04:34:33 |
+|      129 | DARYL       | CRAWFORD     | 2006-02-15 04:34:33 |
+|      130 | GRETA       | KEITEL       | 2006-02-15 04:34:33 |
+|      131 | JANE        | JACKMAN      | 2006-02-15 04:34:33 |
+|      132 | ADAM        | HOPPER       | 2006-02-15 04:34:33 |
+|      133 | RICHARD     | PENN         | 2006-02-15 04:34:33 |
+|      134 | GENE        | HOPKINS      | 2006-02-15 04:34:33 |
+|      135 | RITA        | REYNOLDS     | 2006-02-15 04:34:33 |
+|      136 | ED          | MANSFIELD    | 2006-02-15 04:34:33 |
+|      137 | MORGAN      | WILLIAMS     | 2006-02-15 04:34:33 |
+|      138 | LUCILLE     | DEE          | 2006-02-15 04:34:33 |
+|      139 | EWAN        | GOODING      | 2006-02-15 04:34:33 |
+|      140 | WHOOPI      | HURT         | 2006-02-15 04:34:33 |
+|      141 | CATE        | HARRIS       | 2006-02-15 04:34:33 |
+|      142 | JADA        | RYDER        | 2006-02-15 04:34:33 |
+|      143 | RIVER       | DEAN         | 2006-02-15 04:34:33 |
+|      144 | ANGELA      | WITHERSPOON  | 2006-02-15 04:34:33 |
+|      145 | KIM         | ALLEN        | 2006-02-15 04:34:33 |
+|      146 | ALBERT      | JOHANSSON    | 2006-02-15 04:34:33 |
+|      147 | FAY         | WINSLET      | 2006-02-15 04:34:33 |
+|      148 | EMILY       | DEE          | 2006-02-15 04:34:33 |
+|      149 | RUSSELL     | TEMPLE       | 2006-02-15 04:34:33 |
+|      150 | JAYNE       | NOLTE        | 2006-02-15 04:34:33 |
+|      151 | GEOFFREY    | HESTON       | 2006-02-15 04:34:33 |
+|      152 | BEN         | HARRIS       | 2006-02-15 04:34:33 |
+|      153 | MINNIE      | KILMER       | 2006-02-15 04:34:33 |
+|      154 | MERYL       | GIBSON       | 2006-02-15 04:34:33 |
+|      155 | IAN         | TANDY        | 2006-02-15 04:34:33 |
+|      156 | FAY         | WOOD         | 2006-02-15 04:34:33 |
+|      157 | GRETA       | MALDEN       | 2006-02-15 04:34:33 |
+|      158 | VIVIEN      | BASINGER     | 2006-02-15 04:34:33 |
+|      159 | LAURA       | BRODY        | 2006-02-15 04:34:33 |
+|      160 | CHRIS       | DEPP         | 2006-02-15 04:34:33 |
+|      161 | HARVEY      | HOPE         | 2006-02-15 04:34:33 |
+|      162 | OPRAH       | KILMER       | 2006-02-15 04:34:33 |
+|      163 | CHRISTOPHER | WEST         | 2006-02-15 04:34:33 |
+|      164 | HUMPHREY    | WILLIS       | 2006-02-15 04:34:33 |
+|      165 | AL          | GARLAND      | 2006-02-15 04:34:33 |
+|      166 | NICK        | DEGENERES    | 2006-02-15 04:34:33 |
+|      167 | LAURENCE    | BULLOCK      | 2006-02-15 04:34:33 |
+|      168 | WILL        | WILSON       | 2006-02-15 04:34:33 |
+|      169 | KENNETH     | HOFFMAN      | 2006-02-15 04:34:33 |
+|      170 | MENA        | HOPPER       | 2006-02-15 04:34:33 |
+|      171 | OLYMPIA     | PFEIFFER     | 2006-02-15 04:34:33 |
+|      172 | GROUCHO     | WILLIAMS     | 2006-02-15 04:34:33 |
+|      173 | ALAN        | DREYFUSS     | 2006-02-15 04:34:33 |
+|      174 | MICHAEL     | BENING       | 2006-02-15 04:34:33 |
+|      175 | WILLIAM     | HACKMAN      | 2006-02-15 04:34:33 |
+|      176 | JON         | CHASE        | 2006-02-15 04:34:33 |
+|      177 | GENE        | MCKELLEN     | 2006-02-15 04:34:33 |
+|      178 | LISA        | MONROE       | 2006-02-15 04:34:33 |
+|      179 | ED          | GUINESS      | 2006-02-15 04:34:33 |
+|      180 | JEFF        | SILVERSTONE  | 2006-02-15 04:34:33 |
+|      181 | MATTHEW     | CARREY       | 2006-02-15 04:34:33 |
+|      182 | DEBBIE      | AKROYD       | 2006-02-15 04:34:33 |
+|      183 | RUSSELL     | CLOSE        | 2006-02-15 04:34:33 |
+|      184 | HUMPHREY    | GARLAND      | 2006-02-15 04:34:33 |
+|      185 | MICHAEL     | BOLGER       | 2006-02-15 04:34:33 |
+|      186 | JULIA       | ZELLWEGER    | 2006-02-15 04:34:33 |
+|      187 | RENEE       | BALL         | 2006-02-15 04:34:33 |
+|      188 | ROCK        | DUKAKIS      | 2006-02-15 04:34:33 |
+|      189 | CUBA        | BIRCH        | 2006-02-15 04:34:33 |
+|      190 | AUDREY      | BAILEY       | 2006-02-15 04:34:33 |
+|      191 | GREGORY     | GOODING      | 2006-02-15 04:34:33 |
+|      192 | JOHN        | SUVARI       | 2006-02-15 04:34:33 |
+|      193 | BURT        | TEMPLE       | 2006-02-15 04:34:33 |
+|      194 | MERYL       | ALLEN        | 2006-02-15 04:34:33 |
+|      195 | JAYNE       | SILVERSTONE  | 2006-02-15 04:34:33 |
+|      196 | BELA        | WALKEN       | 2006-02-15 04:34:33 |
+|      197 | REESE       | WEST         | 2006-02-15 04:34:33 |
+|      198 | MARY        | KEITEL       | 2006-02-15 04:34:33 |
+|      199 | JULIA       | FAWCETT      | 2006-02-15 04:34:33 |
+|      200 | THORA       | TEMPLE       | 2006-02-15 04:34:33 |
++----------+-------------+--------------+---------------------+
+200 rows in set (0.0027 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > desc actor;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0025 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name
+                                       -> from actor;
++----------+-------------+--------------+
+| actor_id | first_name  | last_name    |
++----------+-------------+--------------+
+|        1 | PENELOPE    | GUINESS      |
+|        2 | NICK        | WAHLBERG     |
+|        3 | ED          | CHASE        |
+|        4 | JENNIFER    | DAVIS        |
+|        5 | JOHNNY      | LOLLOBRIGIDA |
+|        6 | BETTE       | NICHOLSON    |
+|        7 | GRACE       | MOSTEL       |
+|        8 | MATTHEW     | JOHANSSON    |
+|        9 | JOE         | SWANK        |
+|       10 | CHRISTIAN   | GABLE        |
+|       11 | ZERO        | CAGE         |
+|       12 | KARL        | BERRY        |
+|       13 | UMA         | WOOD         |
+|       14 | VIVIEN      | BERGEN       |
+|       15 | CUBA        | OLIVIER      |
+|       16 | FRED        | COSTNER      |
+|       17 | HELEN       | VOIGHT       |
+|       18 | DAN         | TORN         |
+|       19 | BOB         | FAWCETT      |
+|       20 | LUCILLE     | TRACY        |
+|       21 | KIRSTEN     | PALTROW      |
+|       22 | ELVIS       | MARX         |
+|       23 | SANDRA      | KILMER       |
+|       24 | CAMERON     | STREEP       |
+|       25 | KEVIN       | BLOOM        |
+|       26 | RIP         | CRAWFORD     |
+|       27 | JULIA       | MCQUEEN      |
+|       28 | WOODY       | HOFFMAN      |
+|       29 | ALEC        | WAYNE        |
+|       30 | SANDRA      | PECK         |
+|       31 | SISSY       | SOBIESKI     |
+|       32 | TIM         | HACKMAN      |
+|       33 | MILLA       | PECK         |
+|       34 | AUDREY      | OLIVIER      |
+|       35 | JUDY        | DEAN         |
+|       36 | BURT        | DUKAKIS      |
+|       37 | VAL         | BOLGER       |
+|       38 | TOM         | MCKELLEN     |
+|       39 | GOLDIE      | BRODY        |
+|       40 | JOHNNY      | CAGE         |
+|       41 | JODIE       | DEGENERES    |
+|       42 | TOM         | MIRANDA      |
+|       43 | KIRK        | JOVOVICH     |
+|       44 | NICK        | STALLONE     |
+|       45 | REESE       | KILMER       |
+|       46 | PARKER      | GOLDBERG     |
+|       47 | JULIA       | BARRYMORE    |
+|       48 | FRANCES     | DAY-LEWIS    |
+|       49 | ANNE        | CRONYN       |
+|       50 | NATALIE     | HOPKINS      |
+|       51 | GARY        | PHOENIX      |
+|       52 | CARMEN      | HUNT         |
+|       53 | MENA        | TEMPLE       |
+|       54 | PENELOPE    | PINKETT      |
+|       55 | FAY         | KILMER       |
+|       56 | DAN         | HARRIS       |
+|       57 | JUDE        | CRUISE       |
+|       58 | CHRISTIAN   | AKROYD       |
+|       59 | DUSTIN      | TAUTOU       |
+|       60 | HENRY       | BERRY        |
+|       61 | CHRISTIAN   | NEESON       |
+|       62 | JAYNE       | NEESON       |
+|       63 | CAMERON     | WRAY         |
+|       64 | RAY         | JOHANSSON    |
+|       65 | ANGELA      | HUDSON       |
+|       66 | MARY        | TANDY        |
+|       67 | JESSICA     | BAILEY       |
+|       68 | RIP         | WINSLET      |
+|       69 | KENNETH     | PALTROW      |
+|       70 | MICHELLE    | MCCONAUGHEY  |
+|       71 | ADAM        | GRANT        |
+|       72 | SEAN        | WILLIAMS     |
+|       73 | GARY        | PENN         |
+|       74 | MILLA       | KEITEL       |
+|       75 | BURT        | POSEY        |
+|       76 | ANGELINA    | ASTAIRE      |
+|       77 | CARY        | MCCONAUGHEY  |
+|       78 | GROUCHO     | SINATRA      |
+|       79 | MAE         | HOFFMAN      |
+|       80 | RALPH       | CRUZ         |
+|       81 | SCARLETT    | DAMON        |
+|       82 | WOODY       | JOLIE        |
+|       83 | BEN         | WILLIS       |
+|       84 | JAMES       | PITT         |
+|       85 | MINNIE      | ZELLWEGER    |
+|       86 | GREG        | CHAPLIN      |
+|       87 | SPENCER     | PECK         |
+|       88 | KENNETH     | PESCI        |
+|       89 | CHARLIZE    | DENCH        |
+|       90 | SEAN        | GUINESS      |
+|       91 | CHRISTOPHER | BERRY        |
+|       92 | KIRSTEN     | AKROYD       |
+|       93 | ELLEN       | PRESLEY      |
+|       94 | KENNETH     | TORN         |
+|       95 | DARYL       | WAHLBERG     |
+|       96 | GENE        | WILLIS       |
+|       97 | MEG         | HAWKE        |
+|       98 | CHRIS       | BRIDGES      |
+|       99 | JIM         | MOSTEL       |
+|      100 | SPENCER     | DEPP         |
+|      101 | SUSAN       | DAVIS        |
+|      102 | WALTER      | TORN         |
+|      103 | MATTHEW     | LEIGH        |
+|      104 | PENELOPE    | CRONYN       |
+|      105 | SIDNEY      | CROWE        |
+|      106 | GROUCHO     | DUNST        |
+|      107 | GINA        | DEGENERES    |
+|      108 | WARREN      | NOLTE        |
+|      109 | SYLVESTER   | DERN         |
+|      110 | SUSAN       | DAVIS        |
+|      111 | CAMERON     | ZELLWEGER    |
+|      112 | RUSSELL     | BACALL       |
+|      113 | MORGAN      | HOPKINS      |
+|      114 | MORGAN      | MCDORMAND    |
+|      115 | HARRISON    | BALE         |
+|      116 | DAN         | STREEP       |
+|      117 | RENEE       | TRACY        |
+|      118 | CUBA        | ALLEN        |
+|      119 | WARREN      | JACKMAN      |
+|      120 | PENELOPE    | MONROE       |
+|      121 | LIZA        | BERGMAN      |
+|      122 | SALMA       | NOLTE        |
+|      123 | JULIANNE    | DENCH        |
+|      124 | SCARLETT    | BENING       |
+|      125 | ALBERT      | NOLTE        |
+|      126 | FRANCES     | TOMEI        |
+|      127 | KEVIN       | GARLAND      |
+|      128 | CATE        | MCQUEEN      |
+|      129 | DARYL       | CRAWFORD     |
+|      130 | GRETA       | KEITEL       |
+|      131 | JANE        | JACKMAN      |
+|      132 | ADAM        | HOPPER       |
+|      133 | RICHARD     | PENN         |
+|      134 | GENE        | HOPKINS      |
+|      135 | RITA        | REYNOLDS     |
+|      136 | ED          | MANSFIELD    |
+|      137 | MORGAN      | WILLIAMS     |
+|      138 | LUCILLE     | DEE          |
+|      139 | EWAN        | GOODING      |
+|      140 | WHOOPI      | HURT         |
+|      141 | CATE        | HARRIS       |
+|      142 | JADA        | RYDER        |
+|      143 | RIVER       | DEAN         |
+|      144 | ANGELA      | WITHERSPOON  |
+|      145 | KIM         | ALLEN        |
+|      146 | ALBERT      | JOHANSSON    |
+|      147 | FAY         | WINSLET      |
+|      148 | EMILY       | DEE          |
+|      149 | RUSSELL     | TEMPLE       |
+|      150 | JAYNE       | NOLTE        |
+|      151 | GEOFFREY    | HESTON       |
+|      152 | BEN         | HARRIS       |
+|      153 | MINNIE      | KILMER       |
+|      154 | MERYL       | GIBSON       |
+|      155 | IAN         | TANDY        |
+|      156 | FAY         | WOOD         |
+|      157 | GRETA       | MALDEN       |
+|      158 | VIVIEN      | BASINGER     |
+|      159 | LAURA       | BRODY        |
+|      160 | CHRIS       | DEPP         |
+|      161 | HARVEY      | HOPE         |
+|      162 | OPRAH       | KILMER       |
+|      163 | CHRISTOPHER | WEST         |
+|      164 | HUMPHREY    | WILLIS       |
+|      165 | AL          | GARLAND      |
+|      166 | NICK        | DEGENERES    |
+|      167 | LAURENCE    | BULLOCK      |
+|      168 | WILL        | WILSON       |
+|      169 | KENNETH     | HOFFMAN      |
+|      170 | MENA        | HOPPER       |
+|      171 | OLYMPIA     | PFEIFFER     |
+|      172 | GROUCHO     | WILLIAMS     |
+|      173 | ALAN        | DREYFUSS     |
+|      174 | MICHAEL     | BENING       |
+|      175 | WILLIAM     | HACKMAN      |
+|      176 | JON         | CHASE        |
+|      177 | GENE        | MCKELLEN     |
+|      178 | LISA        | MONROE       |
+|      179 | ED          | GUINESS      |
+|      180 | JEFF        | SILVERSTONE  |
+|      181 | MATTHEW     | CARREY       |
+|      182 | DEBBIE      | AKROYD       |
+|      183 | RUSSELL     | CLOSE        |
+|      184 | HUMPHREY    | GARLAND      |
+|      185 | MICHAEL     | BOLGER       |
+|      186 | JULIA       | ZELLWEGER    |
+|      187 | RENEE       | BALL         |
+|      188 | ROCK        | DUKAKIS      |
+|      189 | CUBA        | BIRCH        |
+|      190 | AUDREY      | BAILEY       |
+|      191 | GREGORY     | GOODING      |
+|      192 | JOHN        | SUVARI       |
+|      193 | BURT        | TEMPLE       |
+|      194 | MERYL       | ALLEN        |
+|      195 | JAYNE       | SILVERSTONE  |
+|      196 | BELA        | WALKEN       |
+|      197 | REESE       | WEST         |
+|      198 | MARY        | KEITEL       |
+|      199 | JULIA       | FAWCETT      |
+|      200 | THORA       | TEMPLE       |
++----------+-------------+--------------+
+200 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id as clave_actor, first_name as nombre, last_name as apellido from actor;
++-------------+-------------+--------------+
+| clave_actor | nombre      | apellido     |
++-------------+-------------+--------------+
+|           1 | PENELOPE    | GUINESS      |
+|           2 | NICK        | WAHLBERG     |
+|           3 | ED          | CHASE        |
+|           4 | JENNIFER    | DAVIS        |
+|           5 | JOHNNY      | LOLLOBRIGIDA |
+|           6 | BETTE       | NICHOLSON    |
+|           7 | GRACE       | MOSTEL       |
+|           8 | MATTHEW     | JOHANSSON    |
+|           9 | JOE         | SWANK        |
+|          10 | CHRISTIAN   | GABLE        |
+|          11 | ZERO        | CAGE         |
+|          12 | KARL        | BERRY        |
+|          13 | UMA         | WOOD         |
+|          14 | VIVIEN      | BERGEN       |
+|          15 | CUBA        | OLIVIER      |
+|          16 | FRED        | COSTNER      |
+|          17 | HELEN       | VOIGHT       |
+|          18 | DAN         | TORN         |
+|          19 | BOB         | FAWCETT      |
+|          20 | LUCILLE     | TRACY        |
+|          21 | KIRSTEN     | PALTROW      |
+|          22 | ELVIS       | MARX         |
+|          23 | SANDRA      | KILMER       |
+|          24 | CAMERON     | STREEP       |
+|          25 | KEVIN       | BLOOM        |
+|          26 | RIP         | CRAWFORD     |
+|          27 | JULIA       | MCQUEEN      |
+|          28 | WOODY       | HOFFMAN      |
+|          29 | ALEC        | WAYNE        |
+|          30 | SANDRA      | PECK         |
+|          31 | SISSY       | SOBIESKI     |
+|          32 | TIM         | HACKMAN      |
+|          33 | MILLA       | PECK         |
+|          34 | AUDREY      | OLIVIER      |
+|          35 | JUDY        | DEAN         |
+|          36 | BURT        | DUKAKIS      |
+|          37 | VAL         | BOLGER       |
+|          38 | TOM         | MCKELLEN     |
+|          39 | GOLDIE      | BRODY        |
+|          40 | JOHNNY      | CAGE         |
+|          41 | JODIE       | DEGENERES    |
+|          42 | TOM         | MIRANDA      |
+|          43 | KIRK        | JOVOVICH     |
+|          44 | NICK        | STALLONE     |
+|          45 | REESE       | KILMER       |
+|          46 | PARKER      | GOLDBERG     |
+|          47 | JULIA       | BARRYMORE    |
+|          48 | FRANCES     | DAY-LEWIS    |
+|          49 | ANNE        | CRONYN       |
+|          50 | NATALIE     | HOPKINS      |
+|          51 | GARY        | PHOENIX      |
+|          52 | CARMEN      | HUNT         |
+|          53 | MENA        | TEMPLE       |
+|          54 | PENELOPE    | PINKETT      |
+|          55 | FAY         | KILMER       |
+|          56 | DAN         | HARRIS       |
+|          57 | JUDE        | CRUISE       |
+|          58 | CHRISTIAN   | AKROYD       |
+|          59 | DUSTIN      | TAUTOU       |
+|          60 | HENRY       | BERRY        |
+|          61 | CHRISTIAN   | NEESON       |
+|          62 | JAYNE       | NEESON       |
+|          63 | CAMERON     | WRAY         |
+|          64 | RAY         | JOHANSSON    |
+|          65 | ANGELA      | HUDSON       |
+|          66 | MARY        | TANDY        |
+|          67 | JESSICA     | BAILEY       |
+|          68 | RIP         | WINSLET      |
+|          69 | KENNETH     | PALTROW      |
+|          70 | MICHELLE    | MCCONAUGHEY  |
+|          71 | ADAM        | GRANT        |
+|          72 | SEAN        | WILLIAMS     |
+|          73 | GARY        | PENN         |
+|          74 | MILLA       | KEITEL       |
+|          75 | BURT        | POSEY        |
+|          76 | ANGELINA    | ASTAIRE      |
+|          77 | CARY        | MCCONAUGHEY  |
+|          78 | GROUCHO     | SINATRA      |
+|          79 | MAE         | HOFFMAN      |
+|          80 | RALPH       | CRUZ         |
+|          81 | SCARLETT    | DAMON        |
+|          82 | WOODY       | JOLIE        |
+|          83 | BEN         | WILLIS       |
+|          84 | JAMES       | PITT         |
+|          85 | MINNIE      | ZELLWEGER    |
+|          86 | GREG        | CHAPLIN      |
+|          87 | SPENCER     | PECK         |
+|          88 | KENNETH     | PESCI        |
+|          89 | CHARLIZE    | DENCH        |
+|          90 | SEAN        | GUINESS      |
+|          91 | CHRISTOPHER | BERRY        |
+|          92 | KIRSTEN     | AKROYD       |
+|          93 | ELLEN       | PRESLEY      |
+|          94 | KENNETH     | TORN         |
+|          95 | DARYL       | WAHLBERG     |
+|          96 | GENE        | WILLIS       |
+|          97 | MEG         | HAWKE        |
+|          98 | CHRIS       | BRIDGES      |
+|          99 | JIM         | MOSTEL       |
+|         100 | SPENCER     | DEPP         |
+|         101 | SUSAN       | DAVIS        |
+|         102 | WALTER      | TORN         |
+|         103 | MATTHEW     | LEIGH        |
+|         104 | PENELOPE    | CRONYN       |
+|         105 | SIDNEY      | CROWE        |
+|         106 | GROUCHO     | DUNST        |
+|         107 | GINA        | DEGENERES    |
+|         108 | WARREN      | NOLTE        |
+|         109 | SYLVESTER   | DERN         |
+|         110 | SUSAN       | DAVIS        |
+|         111 | CAMERON     | ZELLWEGER    |
+|         112 | RUSSELL     | BACALL       |
+|         113 | MORGAN      | HOPKINS      |
+|         114 | MORGAN      | MCDORMAND    |
+|         115 | HARRISON    | BALE         |
+|         116 | DAN         | STREEP       |
+|         117 | RENEE       | TRACY        |
+|         118 | CUBA        | ALLEN        |
+|         119 | WARREN      | JACKMAN      |
+|         120 | PENELOPE    | MONROE       |
+|         121 | LIZA        | BERGMAN      |
+|         122 | SALMA       | NOLTE        |
+|         123 | JULIANNE    | DENCH        |
+|         124 | SCARLETT    | BENING       |
+|         125 | ALBERT      | NOLTE        |
+|         126 | FRANCES     | TOMEI        |
+|         127 | KEVIN       | GARLAND      |
+|         128 | CATE        | MCQUEEN      |
+|         129 | DARYL       | CRAWFORD     |
+|         130 | GRETA       | KEITEL       |
+|         131 | JANE        | JACKMAN      |
+|         132 | ADAM        | HOPPER       |
+|         133 | RICHARD     | PENN         |
+|         134 | GENE        | HOPKINS      |
+|         135 | RITA        | REYNOLDS     |
+|         136 | ED          | MANSFIELD    |
+|         137 | MORGAN      | WILLIAMS     |
+|         138 | LUCILLE     | DEE          |
+|         139 | EWAN        | GOODING      |
+|         140 | WHOOPI      | HURT         |
+|         141 | CATE        | HARRIS       |
+|         142 | JADA        | RYDER        |
+|         143 | RIVER       | DEAN         |
+|         144 | ANGELA      | WITHERSPOON  |
+|         145 | KIM         | ALLEN        |
+|         146 | ALBERT      | JOHANSSON    |
+|         147 | FAY         | WINSLET      |
+|         148 | EMILY       | DEE          |
+|         149 | RUSSELL     | TEMPLE       |
+|         150 | JAYNE       | NOLTE        |
+|         151 | GEOFFREY    | HESTON       |
+|         152 | BEN         | HARRIS       |
+|         153 | MINNIE      | KILMER       |
+|         154 | MERYL       | GIBSON       |
+|         155 | IAN         | TANDY        |
+|         156 | FAY         | WOOD         |
+|         157 | GRETA       | MALDEN       |
+|         158 | VIVIEN      | BASINGER     |
+|         159 | LAURA       | BRODY        |
+|         160 | CHRIS       | DEPP         |
+|         161 | HARVEY      | HOPE         |
+|         162 | OPRAH       | KILMER       |
+|         163 | CHRISTOPHER | WEST         |
+|         164 | HUMPHREY    | WILLIS       |
+|         165 | AL          | GARLAND      |
+|         166 | NICK        | DEGENERES    |
+|         167 | LAURENCE    | BULLOCK      |
+|         168 | WILL        | WILSON       |
+|         169 | KENNETH     | HOFFMAN      |
+|         170 | MENA        | HOPPER       |
+|         171 | OLYMPIA     | PFEIFFER     |
+|         172 | GROUCHO     | WILLIAMS     |
+|         173 | ALAN        | DREYFUSS     |
+|         174 | MICHAEL     | BENING       |
+|         175 | WILLIAM     | HACKMAN      |
+|         176 | JON         | CHASE        |
+|         177 | GENE        | MCKELLEN     |
+|         178 | LISA        | MONROE       |
+|         179 | ED          | GUINESS      |
+|         180 | JEFF        | SILVERSTONE  |
+|         181 | MATTHEW     | CARREY       |
+|         182 | DEBBIE      | AKROYD       |
+|         183 | RUSSELL     | CLOSE        |
+|         184 | HUMPHREY    | GARLAND      |
+|         185 | MICHAEL     | BOLGER       |
+|         186 | JULIA       | ZELLWEGER    |
+|         187 | RENEE       | BALL         |
+|         188 | ROCK        | DUKAKIS      |
+|         189 | CUBA        | BIRCH        |
+|         190 | AUDREY      | BAILEY       |
+|         191 | GREGORY     | GOODING      |
+|         192 | JOHN        | SUVARI       |
+|         193 | BURT        | TEMPLE       |
+|         194 | MERYL       | ALLEN        |
+|         195 | JAYNE       | SILVERSTONE  |
+|         196 | BELA        | WALKEN       |
+|         197 | REESE       | WEST         |
+|         198 | MARY        | KEITEL       |
+|         199 | JULIA       | FAWCETT      |
+|         200 | THORA       | TEMPLE       |
++-------------+-------------+--------------+
+200 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor order by last_name;
++----------+-------------+--------------+
+| actor_id | first_name  | last_name    |
++----------+-------------+--------------+
+|       92 | KIRSTEN     | AKROYD       |
+|      182 | DEBBIE      | AKROYD       |
+|       58 | CHRISTIAN   | AKROYD       |
+|      145 | KIM         | ALLEN        |
+|      194 | MERYL       | ALLEN        |
+|      118 | CUBA        | ALLEN        |
+|       76 | ANGELINA    | ASTAIRE      |
+|      112 | RUSSELL     | BACALL       |
+|       67 | JESSICA     | BAILEY       |
+|      190 | AUDREY      | BAILEY       |
+|      115 | HARRISON    | BALE         |
+|      187 | RENEE       | BALL         |
+|       47 | JULIA       | BARRYMORE    |
+|      158 | VIVIEN      | BASINGER     |
+|      174 | MICHAEL     | BENING       |
+|      124 | SCARLETT    | BENING       |
+|       14 | VIVIEN      | BERGEN       |
+|      121 | LIZA        | BERGMAN      |
+|       91 | CHRISTOPHER | BERRY        |
+|       60 | HENRY       | BERRY        |
+|       12 | KARL        | BERRY        |
+|      189 | CUBA        | BIRCH        |
+|       25 | KEVIN       | BLOOM        |
+|      185 | MICHAEL     | BOLGER       |
+|       37 | VAL         | BOLGER       |
+|       98 | CHRIS       | BRIDGES      |
+|       39 | GOLDIE      | BRODY        |
+|      159 | LAURA       | BRODY        |
+|      167 | LAURENCE    | BULLOCK      |
+|       40 | JOHNNY      | CAGE         |
+|       11 | ZERO        | CAGE         |
+|      181 | MATTHEW     | CARREY       |
+|       86 | GREG        | CHAPLIN      |
+|      176 | JON         | CHASE        |
+|        3 | ED          | CHASE        |
+|      183 | RUSSELL     | CLOSE        |
+|       16 | FRED        | COSTNER      |
+|       26 | RIP         | CRAWFORD     |
+|      129 | DARYL       | CRAWFORD     |
+|       49 | ANNE        | CRONYN       |
+|      104 | PENELOPE    | CRONYN       |
+|      105 | SIDNEY      | CROWE        |
+|       57 | JUDE        | CRUISE       |
+|       80 | RALPH       | CRUZ         |
+|       81 | SCARLETT    | DAMON        |
+|      101 | SUSAN       | DAVIS        |
+|      110 | SUSAN       | DAVIS        |
+|        4 | JENNIFER    | DAVIS        |
+|       48 | FRANCES     | DAY-LEWIS    |
+|       35 | JUDY        | DEAN         |
+|      143 | RIVER       | DEAN         |
+|      138 | LUCILLE     | DEE          |
+|      148 | EMILY       | DEE          |
+|       41 | JODIE       | DEGENERES    |
+|      166 | NICK        | DEGENERES    |
+|      107 | GINA        | DEGENERES    |
+|       89 | CHARLIZE    | DENCH        |
+|      123 | JULIANNE    | DENCH        |
+|      160 | CHRIS       | DEPP         |
+|      100 | SPENCER     | DEPP         |
+|      109 | SYLVESTER   | DERN         |
+|      173 | ALAN        | DREYFUSS     |
+|      188 | ROCK        | DUKAKIS      |
+|       36 | BURT        | DUKAKIS      |
+|      106 | GROUCHO     | DUNST        |
+|      199 | JULIA       | FAWCETT      |
+|       19 | BOB         | FAWCETT      |
+|       10 | CHRISTIAN   | GABLE        |
+|      184 | HUMPHREY    | GARLAND      |
+|      127 | KEVIN       | GARLAND      |
+|      165 | AL          | GARLAND      |
+|      154 | MERYL       | GIBSON       |
+|       46 | PARKER      | GOLDBERG     |
+|      191 | GREGORY     | GOODING      |
+|      139 | EWAN        | GOODING      |
+|       71 | ADAM        | GRANT        |
+|        1 | PENELOPE    | GUINESS      |
+|      179 | ED          | GUINESS      |
+|       90 | SEAN        | GUINESS      |
+|      175 | WILLIAM     | HACKMAN      |
+|       32 | TIM         | HACKMAN      |
+|       56 | DAN         | HARRIS       |
+|      141 | CATE        | HARRIS       |
+|      152 | BEN         | HARRIS       |
+|       97 | MEG         | HAWKE        |
+|      151 | GEOFFREY    | HESTON       |
+|       28 | WOODY       | HOFFMAN      |
+|       79 | MAE         | HOFFMAN      |
+|      169 | KENNETH     | HOFFMAN      |
+|      161 | HARVEY      | HOPE         |
+|      113 | MORGAN      | HOPKINS      |
+|       50 | NATALIE     | HOPKINS      |
+|      134 | GENE        | HOPKINS      |
+|      170 | MENA        | HOPPER       |
+|      132 | ADAM        | HOPPER       |
+|       65 | ANGELA      | HUDSON       |
+|       52 | CARMEN      | HUNT         |
+|      140 | WHOOPI      | HURT         |
+|      119 | WARREN      | JACKMAN      |
+|      131 | JANE        | JACKMAN      |
+|      146 | ALBERT      | JOHANSSON    |
+|        8 | MATTHEW     | JOHANSSON    |
+|       64 | RAY         | JOHANSSON    |
+|       82 | WOODY       | JOLIE        |
+|       43 | KIRK        | JOVOVICH     |
+|       74 | MILLA       | KEITEL       |
+|      198 | MARY        | KEITEL       |
+|      130 | GRETA       | KEITEL       |
+|      153 | MINNIE      | KILMER       |
+|       23 | SANDRA      | KILMER       |
+|      162 | OPRAH       | KILMER       |
+|       55 | FAY         | KILMER       |
+|       45 | REESE       | KILMER       |
+|      103 | MATTHEW     | LEIGH        |
+|        5 | JOHNNY      | LOLLOBRIGIDA |
+|      157 | GRETA       | MALDEN       |
+|      136 | ED          | MANSFIELD    |
+|       22 | ELVIS       | MARX         |
+|       77 | CARY        | MCCONAUGHEY  |
+|       70 | MICHELLE    | MCCONAUGHEY  |
+|      114 | MORGAN      | MCDORMAND    |
+|       38 | TOM         | MCKELLEN     |
+|      177 | GENE        | MCKELLEN     |
+|      128 | CATE        | MCQUEEN      |
+|       27 | JULIA       | MCQUEEN      |
+|       42 | TOM         | MIRANDA      |
+|      178 | LISA        | MONROE       |
+|      120 | PENELOPE    | MONROE       |
+|        7 | GRACE       | MOSTEL       |
+|       99 | JIM         | MOSTEL       |
+|       61 | CHRISTIAN   | NEESON       |
+|       62 | JAYNE       | NEESON       |
+|        6 | BETTE       | NICHOLSON    |
+|      108 | WARREN      | NOLTE        |
+|      122 | SALMA       | NOLTE        |
+|      125 | ALBERT      | NOLTE        |
+|      150 | JAYNE       | NOLTE        |
+|       15 | CUBA        | OLIVIER      |
+|       34 | AUDREY      | OLIVIER      |
+|       21 | KIRSTEN     | PALTROW      |
+|       69 | KENNETH     | PALTROW      |
+|       30 | SANDRA      | PECK         |
+|       33 | MILLA       | PECK         |
+|       87 | SPENCER     | PECK         |
+|       73 | GARY        | PENN         |
+|      133 | RICHARD     | PENN         |
+|       88 | KENNETH     | PESCI        |
+|      171 | OLYMPIA     | PFEIFFER     |
+|       51 | GARY        | PHOENIX      |
+|       54 | PENELOPE    | PINKETT      |
+|       84 | JAMES       | PITT         |
+|       75 | BURT        | POSEY        |
+|       93 | ELLEN       | PRESLEY      |
+|      135 | RITA        | REYNOLDS     |
+|      142 | JADA        | RYDER        |
+|      195 | JAYNE       | SILVERSTONE  |
+|      180 | JEFF        | SILVERSTONE  |
+|       78 | GROUCHO     | SINATRA      |
+|       31 | SISSY       | SOBIESKI     |
+|       44 | NICK        | STALLONE     |
+|       24 | CAMERON     | STREEP       |
+|      116 | DAN         | STREEP       |
+|      192 | JOHN        | SUVARI       |
+|        9 | JOE         | SWANK        |
+|      155 | IAN         | TANDY        |
+|       66 | MARY        | TANDY        |
+|       59 | DUSTIN      | TAUTOU       |
+|       53 | MENA        | TEMPLE       |
+|      193 | BURT        | TEMPLE       |
+|      149 | RUSSELL     | TEMPLE       |
+|      200 | THORA       | TEMPLE       |
+|      126 | FRANCES     | TOMEI        |
+|       94 | KENNETH     | TORN         |
+|      102 | WALTER      | TORN         |
+|       18 | DAN         | TORN         |
+|      117 | RENEE       | TRACY        |
+|       20 | LUCILLE     | TRACY        |
+|       17 | HELEN       | VOIGHT       |
+|        2 | NICK        | WAHLBERG     |
+|       95 | DARYL       | WAHLBERG     |
+|      196 | BELA        | WALKEN       |
+|       29 | ALEC        | WAYNE        |
+|      163 | CHRISTOPHER | WEST         |
+|      197 | REESE       | WEST         |
+|      172 | GROUCHO     | WILLIAMS     |
+|       72 | SEAN        | WILLIAMS     |
+|      137 | MORGAN      | WILLIAMS     |
+|       83 | BEN         | WILLIS       |
+|       96 | GENE        | WILLIS       |
+|      164 | HUMPHREY    | WILLIS       |
+|      168 | WILL        | WILSON       |
+|       68 | RIP         | WINSLET      |
+|      147 | FAY         | WINSLET      |
+|      144 | ANGELA      | WITHERSPOON  |
+|      156 | FAY         | WOOD         |
+|       13 | UMA         | WOOD         |
+|       63 | CAMERON     | WRAY         |
+|       85 | MINNIE      | ZELLWEGER    |
+|      111 | CAMERON     | ZELLWEGER    |
+|      186 | JULIA       | ZELLWEGER    |
++----------+-------------+--------------+
+200 rows in set (0.0027 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor order by last_name desc;
++----------+-------------+--------------+
+| actor_id | first_name  | last_name    |
++----------+-------------+--------------+
+|       85 | MINNIE      | ZELLWEGER    |
+|      186 | JULIA       | ZELLWEGER    |
+|      111 | CAMERON     | ZELLWEGER    |
+|       63 | CAMERON     | WRAY         |
+|       13 | UMA         | WOOD         |
+|      156 | FAY         | WOOD         |
+|      144 | ANGELA      | WITHERSPOON  |
+|       68 | RIP         | WINSLET      |
+|      147 | FAY         | WINSLET      |
+|      168 | WILL        | WILSON       |
+|       96 | GENE        | WILLIS       |
+|       83 | BEN         | WILLIS       |
+|      164 | HUMPHREY    | WILLIS       |
+|       72 | SEAN        | WILLIAMS     |
+|      137 | MORGAN      | WILLIAMS     |
+|      172 | GROUCHO     | WILLIAMS     |
+|      163 | CHRISTOPHER | WEST         |
+|      197 | REESE       | WEST         |
+|       29 | ALEC        | WAYNE        |
+|      196 | BELA        | WALKEN       |
+|        2 | NICK        | WAHLBERG     |
+|       95 | DARYL       | WAHLBERG     |
+|       17 | HELEN       | VOIGHT       |
+|       20 | LUCILLE     | TRACY        |
+|      117 | RENEE       | TRACY        |
+|       94 | KENNETH     | TORN         |
+|      102 | WALTER      | TORN         |
+|       18 | DAN         | TORN         |
+|      126 | FRANCES     | TOMEI        |
+|      200 | THORA       | TEMPLE       |
+|      149 | RUSSELL     | TEMPLE       |
+|       53 | MENA        | TEMPLE       |
+|      193 | BURT        | TEMPLE       |
+|       59 | DUSTIN      | TAUTOU       |
+|      155 | IAN         | TANDY        |
+|       66 | MARY        | TANDY        |
+|        9 | JOE         | SWANK        |
+|      192 | JOHN        | SUVARI       |
+|       24 | CAMERON     | STREEP       |
+|      116 | DAN         | STREEP       |
+|       44 | NICK        | STALLONE     |
+|       31 | SISSY       | SOBIESKI     |
+|       78 | GROUCHO     | SINATRA      |
+|      195 | JAYNE       | SILVERSTONE  |
+|      180 | JEFF        | SILVERSTONE  |
+|      142 | JADA        | RYDER        |
+|      135 | RITA        | REYNOLDS     |
+|       93 | ELLEN       | PRESLEY      |
+|       75 | BURT        | POSEY        |
+|       84 | JAMES       | PITT         |
+|       54 | PENELOPE    | PINKETT      |
+|       51 | GARY        | PHOENIX      |
+|      171 | OLYMPIA     | PFEIFFER     |
+|       88 | KENNETH     | PESCI        |
+|      133 | RICHARD     | PENN         |
+|       73 | GARY        | PENN         |
+|       87 | SPENCER     | PECK         |
+|       30 | SANDRA      | PECK         |
+|       33 | MILLA       | PECK         |
+|       21 | KIRSTEN     | PALTROW      |
+|       69 | KENNETH     | PALTROW      |
+|       15 | CUBA        | OLIVIER      |
+|       34 | AUDREY      | OLIVIER      |
+|      125 | ALBERT      | NOLTE        |
+|      150 | JAYNE       | NOLTE        |
+|      122 | SALMA       | NOLTE        |
+|      108 | WARREN      | NOLTE        |
+|        6 | BETTE       | NICHOLSON    |
+|       62 | JAYNE       | NEESON       |
+|       61 | CHRISTIAN   | NEESON       |
+|        7 | GRACE       | MOSTEL       |
+|       99 | JIM         | MOSTEL       |
+|      178 | LISA        | MONROE       |
+|      120 | PENELOPE    | MONROE       |
+|       42 | TOM         | MIRANDA      |
+|      128 | CATE        | MCQUEEN      |
+|       27 | JULIA       | MCQUEEN      |
+|      177 | GENE        | MCKELLEN     |
+|       38 | TOM         | MCKELLEN     |
+|      114 | MORGAN      | MCDORMAND    |
+|       70 | MICHELLE    | MCCONAUGHEY  |
+|       77 | CARY        | MCCONAUGHEY  |
+|       22 | ELVIS       | MARX         |
+|      136 | ED          | MANSFIELD    |
+|      157 | GRETA       | MALDEN       |
+|        5 | JOHNNY      | LOLLOBRIGIDA |
+|      103 | MATTHEW     | LEIGH        |
+|       45 | REESE       | KILMER       |
+|       23 | SANDRA      | KILMER       |
+|      153 | MINNIE      | KILMER       |
+|       55 | FAY         | KILMER       |
+|      162 | OPRAH       | KILMER       |
+|      130 | GRETA       | KEITEL       |
+|       74 | MILLA       | KEITEL       |
+|      198 | MARY        | KEITEL       |
+|       43 | KIRK        | JOVOVICH     |
+|       82 | WOODY       | JOLIE        |
+|       64 | RAY         | JOHANSSON    |
+|      146 | ALBERT      | JOHANSSON    |
+|        8 | MATTHEW     | JOHANSSON    |
+|      131 | JANE        | JACKMAN      |
+|      119 | WARREN      | JACKMAN      |
+|      140 | WHOOPI      | HURT         |
+|       52 | CARMEN      | HUNT         |
+|       65 | ANGELA      | HUDSON       |
+|      132 | ADAM        | HOPPER       |
+|      170 | MENA        | HOPPER       |
+|      134 | GENE        | HOPKINS      |
+|      113 | MORGAN      | HOPKINS      |
+|       50 | NATALIE     | HOPKINS      |
+|      161 | HARVEY      | HOPE         |
+|       28 | WOODY       | HOFFMAN      |
+|       79 | MAE         | HOFFMAN      |
+|      169 | KENNETH     | HOFFMAN      |
+|      151 | GEOFFREY    | HESTON       |
+|       97 | MEG         | HAWKE        |
+|      152 | BEN         | HARRIS       |
+|       56 | DAN         | HARRIS       |
+|      141 | CATE        | HARRIS       |
+|       32 | TIM         | HACKMAN      |
+|      175 | WILLIAM     | HACKMAN      |
+|        1 | PENELOPE    | GUINESS      |
+|       90 | SEAN        | GUINESS      |
+|      179 | ED          | GUINESS      |
+|       71 | ADAM        | GRANT        |
+|      191 | GREGORY     | GOODING      |
+|      139 | EWAN        | GOODING      |
+|       46 | PARKER      | GOLDBERG     |
+|      154 | MERYL       | GIBSON       |
+|      127 | KEVIN       | GARLAND      |
+|      184 | HUMPHREY    | GARLAND      |
+|      165 | AL          | GARLAND      |
+|       10 | CHRISTIAN   | GABLE        |
+|      199 | JULIA       | FAWCETT      |
+|       19 | BOB         | FAWCETT      |
+|      106 | GROUCHO     | DUNST        |
+|      188 | ROCK        | DUKAKIS      |
+|       36 | BURT        | DUKAKIS      |
+|      173 | ALAN        | DREYFUSS     |
+|      109 | SYLVESTER   | DERN         |
+|      100 | SPENCER     | DEPP         |
+|      160 | CHRIS       | DEPP         |
+|       89 | CHARLIZE    | DENCH        |
+|      123 | JULIANNE    | DENCH        |
+|       41 | JODIE       | DEGENERES    |
+|      166 | NICK        | DEGENERES    |
+|      107 | GINA        | DEGENERES    |
+|      138 | LUCILLE     | DEE          |
+|      148 | EMILY       | DEE          |
+|       35 | JUDY        | DEAN         |
+|      143 | RIVER       | DEAN         |
+|       48 | FRANCES     | DAY-LEWIS    |
+|      110 | SUSAN       | DAVIS        |
+|      101 | SUSAN       | DAVIS        |
+|        4 | JENNIFER    | DAVIS        |
+|       81 | SCARLETT    | DAMON        |
+|       80 | RALPH       | CRUZ         |
+|       57 | JUDE        | CRUISE       |
+|      105 | SIDNEY      | CROWE        |
+|       49 | ANNE        | CRONYN       |
+|      104 | PENELOPE    | CRONYN       |
+|      129 | DARYL       | CRAWFORD     |
+|       26 | RIP         | CRAWFORD     |
+|       16 | FRED        | COSTNER      |
+|      183 | RUSSELL     | CLOSE        |
+|        3 | ED          | CHASE        |
+|      176 | JON         | CHASE        |
+|       86 | GREG        | CHAPLIN      |
+|      181 | MATTHEW     | CARREY       |
+|       40 | JOHNNY      | CAGE         |
+|       11 | ZERO        | CAGE         |
+|      167 | LAURENCE    | BULLOCK      |
+|       39 | GOLDIE      | BRODY        |
+|      159 | LAURA       | BRODY        |
+|       98 | CHRIS       | BRIDGES      |
+|       37 | VAL         | BOLGER       |
+|      185 | MICHAEL     | BOLGER       |
+|       25 | KEVIN       | BLOOM        |
+|      189 | CUBA        | BIRCH        |
+|       91 | CHRISTOPHER | BERRY        |
+|       12 | KARL        | BERRY        |
+|       60 | HENRY       | BERRY        |
+|      121 | LIZA        | BERGMAN      |
+|       14 | VIVIEN      | BERGEN       |
+|      174 | MICHAEL     | BENING       |
+|      124 | SCARLETT    | BENING       |
+|      158 | VIVIEN      | BASINGER     |
+|       47 | JULIA       | BARRYMORE    |
+|      187 | RENEE       | BALL         |
+|      115 | HARRISON    | BALE         |
+|      190 | AUDREY      | BAILEY       |
+|       67 | JESSICA     | BAILEY       |
+|      112 | RUSSELL     | BACALL       |
+|       76 | ANGELINA    | ASTAIRE      |
+|      118 | CUBA        | ALLEN        |
+|      194 | MERYL       | ALLEN        |
+|      145 | KIM         | ALLEN        |
+|       92 | KIRSTEN     | AKROYD       |
+|       58 | CHRISTIAN   | AKROYD       |
+|      182 | DEBBIE      | AKROYD       |
++----------+-------------+--------------+
+200 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor order by last_name desc, first_name;
++----------+-------------+--------------+
+| actor_id | first_name  | last_name    |
++----------+-------------+--------------+
+|      111 | CAMERON     | ZELLWEGER    |
+|      186 | JULIA       | ZELLWEGER    |
+|       85 | MINNIE      | ZELLWEGER    |
+|       63 | CAMERON     | WRAY         |
+|      156 | FAY         | WOOD         |
+|       13 | UMA         | WOOD         |
+|      144 | ANGELA      | WITHERSPOON  |
+|      147 | FAY         | WINSLET      |
+|       68 | RIP         | WINSLET      |
+|      168 | WILL        | WILSON       |
+|       83 | BEN         | WILLIS       |
+|       96 | GENE        | WILLIS       |
+|      164 | HUMPHREY    | WILLIS       |
+|      172 | GROUCHO     | WILLIAMS     |
+|      137 | MORGAN      | WILLIAMS     |
+|       72 | SEAN        | WILLIAMS     |
+|      163 | CHRISTOPHER | WEST         |
+|      197 | REESE       | WEST         |
+|       29 | ALEC        | WAYNE        |
+|      196 | BELA        | WALKEN       |
+|       95 | DARYL       | WAHLBERG     |
+|        2 | NICK        | WAHLBERG     |
+|       17 | HELEN       | VOIGHT       |
+|       20 | LUCILLE     | TRACY        |
+|      117 | RENEE       | TRACY        |
+|       18 | DAN         | TORN         |
+|       94 | KENNETH     | TORN         |
+|      102 | WALTER      | TORN         |
+|      126 | FRANCES     | TOMEI        |
+|      193 | BURT        | TEMPLE       |
+|       53 | MENA        | TEMPLE       |
+|      149 | RUSSELL     | TEMPLE       |
+|      200 | THORA       | TEMPLE       |
+|       59 | DUSTIN      | TAUTOU       |
+|      155 | IAN         | TANDY        |
+|       66 | MARY        | TANDY        |
+|        9 | JOE         | SWANK        |
+|      192 | JOHN        | SUVARI       |
+|       24 | CAMERON     | STREEP       |
+|      116 | DAN         | STREEP       |
+|       44 | NICK        | STALLONE     |
+|       31 | SISSY       | SOBIESKI     |
+|       78 | GROUCHO     | SINATRA      |
+|      195 | JAYNE       | SILVERSTONE  |
+|      180 | JEFF        | SILVERSTONE  |
+|      142 | JADA        | RYDER        |
+|      135 | RITA        | REYNOLDS     |
+|       93 | ELLEN       | PRESLEY      |
+|       75 | BURT        | POSEY        |
+|       84 | JAMES       | PITT         |
+|       54 | PENELOPE    | PINKETT      |
+|       51 | GARY        | PHOENIX      |
+|      171 | OLYMPIA     | PFEIFFER     |
+|       88 | KENNETH     | PESCI        |
+|       73 | GARY        | PENN         |
+|      133 | RICHARD     | PENN         |
+|       33 | MILLA       | PECK         |
+|       30 | SANDRA      | PECK         |
+|       87 | SPENCER     | PECK         |
+|       69 | KENNETH     | PALTROW      |
+|       21 | KIRSTEN     | PALTROW      |
+|       34 | AUDREY      | OLIVIER      |
+|       15 | CUBA        | OLIVIER      |
+|      125 | ALBERT      | NOLTE        |
+|      150 | JAYNE       | NOLTE        |
+|      122 | SALMA       | NOLTE        |
+|      108 | WARREN      | NOLTE        |
+|        6 | BETTE       | NICHOLSON    |
+|       61 | CHRISTIAN   | NEESON       |
+|       62 | JAYNE       | NEESON       |
+|        7 | GRACE       | MOSTEL       |
+|       99 | JIM         | MOSTEL       |
+|      178 | LISA        | MONROE       |
+|      120 | PENELOPE    | MONROE       |
+|       42 | TOM         | MIRANDA      |
+|      128 | CATE        | MCQUEEN      |
+|       27 | JULIA       | MCQUEEN      |
+|      177 | GENE        | MCKELLEN     |
+|       38 | TOM         | MCKELLEN     |
+|      114 | MORGAN      | MCDORMAND    |
+|       77 | CARY        | MCCONAUGHEY  |
+|       70 | MICHELLE    | MCCONAUGHEY  |
+|       22 | ELVIS       | MARX         |
+|      136 | ED          | MANSFIELD    |
+|      157 | GRETA       | MALDEN       |
+|        5 | JOHNNY      | LOLLOBRIGIDA |
+|      103 | MATTHEW     | LEIGH        |
+|       55 | FAY         | KILMER       |
+|      153 | MINNIE      | KILMER       |
+|      162 | OPRAH       | KILMER       |
+|       45 | REESE       | KILMER       |
+|       23 | SANDRA      | KILMER       |
+|      130 | GRETA       | KEITEL       |
+|      198 | MARY        | KEITEL       |
+|       74 | MILLA       | KEITEL       |
+|       43 | KIRK        | JOVOVICH     |
+|       82 | WOODY       | JOLIE        |
+|      146 | ALBERT      | JOHANSSON    |
+|        8 | MATTHEW     | JOHANSSON    |
+|       64 | RAY         | JOHANSSON    |
+|      131 | JANE        | JACKMAN      |
+|      119 | WARREN      | JACKMAN      |
+|      140 | WHOOPI      | HURT         |
+|       52 | CARMEN      | HUNT         |
+|       65 | ANGELA      | HUDSON       |
+|      132 | ADAM        | HOPPER       |
+|      170 | MENA        | HOPPER       |
+|      134 | GENE        | HOPKINS      |
+|      113 | MORGAN      | HOPKINS      |
+|       50 | NATALIE     | HOPKINS      |
+|      161 | HARVEY      | HOPE         |
+|      169 | KENNETH     | HOFFMAN      |
+|       79 | MAE         | HOFFMAN      |
+|       28 | WOODY       | HOFFMAN      |
+|      151 | GEOFFREY    | HESTON       |
+|       97 | MEG         | HAWKE        |
+|      152 | BEN         | HARRIS       |
+|      141 | CATE        | HARRIS       |
+|       56 | DAN         | HARRIS       |
+|       32 | TIM         | HACKMAN      |
+|      175 | WILLIAM     | HACKMAN      |
+|      179 | ED          | GUINESS      |
+|        1 | PENELOPE    | GUINESS      |
+|       90 | SEAN        | GUINESS      |
+|       71 | ADAM        | GRANT        |
+|      139 | EWAN        | GOODING      |
+|      191 | GREGORY     | GOODING      |
+|       46 | PARKER      | GOLDBERG     |
+|      154 | MERYL       | GIBSON       |
+|      165 | AL          | GARLAND      |
+|      184 | HUMPHREY    | GARLAND      |
+|      127 | KEVIN       | GARLAND      |
+|       10 | CHRISTIAN   | GABLE        |
+|       19 | BOB         | FAWCETT      |
+|      199 | JULIA       | FAWCETT      |
+|      106 | GROUCHO     | DUNST        |
+|       36 | BURT        | DUKAKIS      |
+|      188 | ROCK        | DUKAKIS      |
+|      173 | ALAN        | DREYFUSS     |
+|      109 | SYLVESTER   | DERN         |
+|      160 | CHRIS       | DEPP         |
+|      100 | SPENCER     | DEPP         |
+|       89 | CHARLIZE    | DENCH        |
+|      123 | JULIANNE    | DENCH        |
+|      107 | GINA        | DEGENERES    |
+|       41 | JODIE       | DEGENERES    |
+|      166 | NICK        | DEGENERES    |
+|      148 | EMILY       | DEE          |
+|      138 | LUCILLE     | DEE          |
+|       35 | JUDY        | DEAN         |
+|      143 | RIVER       | DEAN         |
+|       48 | FRANCES     | DAY-LEWIS    |
+|        4 | JENNIFER    | DAVIS        |
+|      101 | SUSAN       | DAVIS        |
+|      110 | SUSAN       | DAVIS        |
+|       81 | SCARLETT    | DAMON        |
+|       80 | RALPH       | CRUZ         |
+|       57 | JUDE        | CRUISE       |
+|      105 | SIDNEY      | CROWE        |
+|       49 | ANNE        | CRONYN       |
+|      104 | PENELOPE    | CRONYN       |
+|      129 | DARYL       | CRAWFORD     |
+|       26 | RIP         | CRAWFORD     |
+|       16 | FRED        | COSTNER      |
+|      183 | RUSSELL     | CLOSE        |
+|        3 | ED          | CHASE        |
+|      176 | JON         | CHASE        |
+|       86 | GREG        | CHAPLIN      |
+|      181 | MATTHEW     | CARREY       |
+|       40 | JOHNNY      | CAGE         |
+|       11 | ZERO        | CAGE         |
+|      167 | LAURENCE    | BULLOCK      |
+|       39 | GOLDIE      | BRODY        |
+|      159 | LAURA       | BRODY        |
+|       98 | CHRIS       | BRIDGES      |
+|      185 | MICHAEL     | BOLGER       |
+|       37 | VAL         | BOLGER       |
+|       25 | KEVIN       | BLOOM        |
+|      189 | CUBA        | BIRCH        |
+|       91 | CHRISTOPHER | BERRY        |
+|       60 | HENRY       | BERRY        |
+|       12 | KARL        | BERRY        |
+|      121 | LIZA        | BERGMAN      |
+|       14 | VIVIEN      | BERGEN       |
+|      174 | MICHAEL     | BENING       |
+|      124 | SCARLETT    | BENING       |
+|      158 | VIVIEN      | BASINGER     |
+|       47 | JULIA       | BARRYMORE    |
+|      187 | RENEE       | BALL         |
+|      115 | HARRISON    | BALE         |
+|      190 | AUDREY      | BAILEY       |
+|       67 | JESSICA     | BAILEY       |
+|      112 | RUSSELL     | BACALL       |
+|       76 | ANGELINA    | ASTAIRE      |
+|      118 | CUBA        | ALLEN        |
+|      145 | KIM         | ALLEN        |
+|      194 | MERYL       | ALLEN        |
+|       58 | CHRISTIAN   | AKROYD       |
+|      182 | DEBBIE      | AKROYD       |
+|       92 | KIRSTEN     | AKROYD       |
++----------+-------------+--------------+
+200 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor order by last_name = "WILLIAMS";
++----------+-------------+--------------+
+| actor_id | first_name  | last_name    |
++----------+-------------+--------------+
+|        1 | PENELOPE    | GUINESS      |
+|        2 | NICK        | WAHLBERG     |
+|        3 | ED          | CHASE        |
+|        4 | JENNIFER    | DAVIS        |
+|        5 | JOHNNY      | LOLLOBRIGIDA |
+|        6 | BETTE       | NICHOLSON    |
+|        7 | GRACE       | MOSTEL       |
+|        8 | MATTHEW     | JOHANSSON    |
+|        9 | JOE         | SWANK        |
+|       10 | CHRISTIAN   | GABLE        |
+|       11 | ZERO        | CAGE         |
+|       12 | KARL        | BERRY        |
+|       13 | UMA         | WOOD         |
+|       14 | VIVIEN      | BERGEN       |
+|       15 | CUBA        | OLIVIER      |
+|       16 | FRED        | COSTNER      |
+|       17 | HELEN       | VOIGHT       |
+|       18 | DAN         | TORN         |
+|       19 | BOB         | FAWCETT      |
+|       20 | LUCILLE     | TRACY        |
+|       21 | KIRSTEN     | PALTROW      |
+|       22 | ELVIS       | MARX         |
+|       23 | SANDRA      | KILMER       |
+|       24 | CAMERON     | STREEP       |
+|       25 | KEVIN       | BLOOM        |
+|       26 | RIP         | CRAWFORD     |
+|       27 | JULIA       | MCQUEEN      |
+|       28 | WOODY       | HOFFMAN      |
+|       29 | ALEC        | WAYNE        |
+|       30 | SANDRA      | PECK         |
+|       31 | SISSY       | SOBIESKI     |
+|       32 | TIM         | HACKMAN      |
+|       33 | MILLA       | PECK         |
+|       34 | AUDREY      | OLIVIER      |
+|       35 | JUDY        | DEAN         |
+|       36 | BURT        | DUKAKIS      |
+|       37 | VAL         | BOLGER       |
+|       38 | TOM         | MCKELLEN     |
+|       39 | GOLDIE      | BRODY        |
+|       40 | JOHNNY      | CAGE         |
+|       41 | JODIE       | DEGENERES    |
+|       42 | TOM         | MIRANDA      |
+|       43 | KIRK        | JOVOVICH     |
+|       44 | NICK        | STALLONE     |
+|       45 | REESE       | KILMER       |
+|       46 | PARKER      | GOLDBERG     |
+|       47 | JULIA       | BARRYMORE    |
+|       48 | FRANCES     | DAY-LEWIS    |
+|       49 | ANNE        | CRONYN       |
+|       50 | NATALIE     | HOPKINS      |
+|       51 | GARY        | PHOENIX      |
+|       52 | CARMEN      | HUNT         |
+|       53 | MENA        | TEMPLE       |
+|       54 | PENELOPE    | PINKETT      |
+|       55 | FAY         | KILMER       |
+|       56 | DAN         | HARRIS       |
+|       57 | JUDE        | CRUISE       |
+|       58 | CHRISTIAN   | AKROYD       |
+|       59 | DUSTIN      | TAUTOU       |
+|       60 | HENRY       | BERRY        |
+|       61 | CHRISTIAN   | NEESON       |
+|       62 | JAYNE       | NEESON       |
+|       63 | CAMERON     | WRAY         |
+|       64 | RAY         | JOHANSSON    |
+|       65 | ANGELA      | HUDSON       |
+|       66 | MARY        | TANDY        |
+|       67 | JESSICA     | BAILEY       |
+|       68 | RIP         | WINSLET      |
+|       69 | KENNETH     | PALTROW      |
+|       70 | MICHELLE    | MCCONAUGHEY  |
+|       71 | ADAM        | GRANT        |
+|       73 | GARY        | PENN         |
+|       74 | MILLA       | KEITEL       |
+|       75 | BURT        | POSEY        |
+|       76 | ANGELINA    | ASTAIRE      |
+|       77 | CARY        | MCCONAUGHEY  |
+|       78 | GROUCHO     | SINATRA      |
+|       79 | MAE         | HOFFMAN      |
+|       80 | RALPH       | CRUZ         |
+|       81 | SCARLETT    | DAMON        |
+|       82 | WOODY       | JOLIE        |
+|       83 | BEN         | WILLIS       |
+|       84 | JAMES       | PITT         |
+|       85 | MINNIE      | ZELLWEGER    |
+|       86 | GREG        | CHAPLIN      |
+|       87 | SPENCER     | PECK         |
+|       88 | KENNETH     | PESCI        |
+|       89 | CHARLIZE    | DENCH        |
+|       90 | SEAN        | GUINESS      |
+|       91 | CHRISTOPHER | BERRY        |
+|       92 | KIRSTEN     | AKROYD       |
+|       93 | ELLEN       | PRESLEY      |
+|       94 | KENNETH     | TORN         |
+|       95 | DARYL       | WAHLBERG     |
+|       96 | GENE        | WILLIS       |
+|       97 | MEG         | HAWKE        |
+|       98 | CHRIS       | BRIDGES      |
+|       99 | JIM         | MOSTEL       |
+|      100 | SPENCER     | DEPP         |
+|      101 | SUSAN       | DAVIS        |
+|      102 | WALTER      | TORN         |
+|      103 | MATTHEW     | LEIGH        |
+|      104 | PENELOPE    | CRONYN       |
+|      105 | SIDNEY      | CROWE        |
+|      106 | GROUCHO     | DUNST        |
+|      107 | GINA        | DEGENERES    |
+|      108 | WARREN      | NOLTE        |
+|      109 | SYLVESTER   | DERN         |
+|      110 | SUSAN       | DAVIS        |
+|      111 | CAMERON     | ZELLWEGER    |
+|      112 | RUSSELL     | BACALL       |
+|      113 | MORGAN      | HOPKINS      |
+|      114 | MORGAN      | MCDORMAND    |
+|      115 | HARRISON    | BALE         |
+|      116 | DAN         | STREEP       |
+|      117 | RENEE       | TRACY        |
+|      118 | CUBA        | ALLEN        |
+|      119 | WARREN      | JACKMAN      |
+|      120 | PENELOPE    | MONROE       |
+|      121 | LIZA        | BERGMAN      |
+|      122 | SALMA       | NOLTE        |
+|      123 | JULIANNE    | DENCH        |
+|      124 | SCARLETT    | BENING       |
+|      125 | ALBERT      | NOLTE        |
+|      126 | FRANCES     | TOMEI        |
+|      127 | KEVIN       | GARLAND      |
+|      128 | CATE        | MCQUEEN      |
+|      129 | DARYL       | CRAWFORD     |
+|      130 | GRETA       | KEITEL       |
+|      131 | JANE        | JACKMAN      |
+|      132 | ADAM        | HOPPER       |
+|      133 | RICHARD     | PENN         |
+|      134 | GENE        | HOPKINS      |
+|      135 | RITA        | REYNOLDS     |
+|      136 | ED          | MANSFIELD    |
+|      138 | LUCILLE     | DEE          |
+|      139 | EWAN        | GOODING      |
+|      140 | WHOOPI      | HURT         |
+|      141 | CATE        | HARRIS       |
+|      142 | JADA        | RYDER        |
+|      143 | RIVER       | DEAN         |
+|      144 | ANGELA      | WITHERSPOON  |
+|      145 | KIM         | ALLEN        |
+|      146 | ALBERT      | JOHANSSON    |
+|      147 | FAY         | WINSLET      |
+|      148 | EMILY       | DEE          |
+|      149 | RUSSELL     | TEMPLE       |
+|      150 | JAYNE       | NOLTE        |
+|      151 | GEOFFREY    | HESTON       |
+|      152 | BEN         | HARRIS       |
+|      153 | MINNIE      | KILMER       |
+|      154 | MERYL       | GIBSON       |
+|      155 | IAN         | TANDY        |
+|      156 | FAY         | WOOD         |
+|      157 | GRETA       | MALDEN       |
+|      158 | VIVIEN      | BASINGER     |
+|      159 | LAURA       | BRODY        |
+|      160 | CHRIS       | DEPP         |
+|      161 | HARVEY      | HOPE         |
+|      162 | OPRAH       | KILMER       |
+|      163 | CHRISTOPHER | WEST         |
+|      164 | HUMPHREY    | WILLIS       |
+|      165 | AL          | GARLAND      |
+|      166 | NICK        | DEGENERES    |
+|      167 | LAURENCE    | BULLOCK      |
+|      168 | WILL        | WILSON       |
+|      169 | KENNETH     | HOFFMAN      |
+|      170 | MENA        | HOPPER       |
+|      171 | OLYMPIA     | PFEIFFER     |
+|      173 | ALAN        | DREYFUSS     |
+|      174 | MICHAEL     | BENING       |
+|      175 | WILLIAM     | HACKMAN      |
+|      176 | JON         | CHASE        |
+|      177 | GENE        | MCKELLEN     |
+|      178 | LISA        | MONROE       |
+|      179 | ED          | GUINESS      |
+|      180 | JEFF        | SILVERSTONE  |
+|      181 | MATTHEW     | CARREY       |
+|      182 | DEBBIE      | AKROYD       |
+|      183 | RUSSELL     | CLOSE        |
+|      184 | HUMPHREY    | GARLAND      |
+|      185 | MICHAEL     | BOLGER       |
+|      186 | JULIA       | ZELLWEGER    |
+|      187 | RENEE       | BALL         |
+|      188 | ROCK        | DUKAKIS      |
+|      189 | CUBA        | BIRCH        |
+|      190 | AUDREY      | BAILEY       |
+|      191 | GREGORY     | GOODING      |
+|      192 | JOHN        | SUVARI       |
+|      193 | BURT        | TEMPLE       |
+|      194 | MERYL       | ALLEN        |
+|      195 | JAYNE       | SILVERSTONE  |
+|      196 | BELA        | WALKEN       |
+|      197 | REESE       | WEST         |
+|      198 | MARY        | KEITEL       |
+|      199 | JULIA       | FAWCETT      |
+|      200 | THORA       | TEMPLE       |
+|       72 | SEAN        | WILLIAMS     |
+|      137 | MORGAN      | WILLIAMS     |
+|      172 | GROUCHO     | WILLIAMS     |
++----------+-------------+--------------+
+200 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor order by last_name like 'W%';
++----------+-------------+--------------+
+| actor_id | first_name  | last_name    |
++----------+-------------+--------------+
+|        1 | PENELOPE    | GUINESS      |
+|        3 | ED          | CHASE        |
+|        4 | JENNIFER    | DAVIS        |
+|        5 | JOHNNY      | LOLLOBRIGIDA |
+|        6 | BETTE       | NICHOLSON    |
+|        7 | GRACE       | MOSTEL       |
+|        8 | MATTHEW     | JOHANSSON    |
+|        9 | JOE         | SWANK        |
+|       10 | CHRISTIAN   | GABLE        |
+|       11 | ZERO        | CAGE         |
+|       12 | KARL        | BERRY        |
+|       14 | VIVIEN      | BERGEN       |
+|       15 | CUBA        | OLIVIER      |
+|       16 | FRED        | COSTNER      |
+|       17 | HELEN       | VOIGHT       |
+|       18 | DAN         | TORN         |
+|       19 | BOB         | FAWCETT      |
+|       20 | LUCILLE     | TRACY        |
+|       21 | KIRSTEN     | PALTROW      |
+|       22 | ELVIS       | MARX         |
+|       23 | SANDRA      | KILMER       |
+|       24 | CAMERON     | STREEP       |
+|       25 | KEVIN       | BLOOM        |
+|       26 | RIP         | CRAWFORD     |
+|       27 | JULIA       | MCQUEEN      |
+|       28 | WOODY       | HOFFMAN      |
+|       30 | SANDRA      | PECK         |
+|       31 | SISSY       | SOBIESKI     |
+|       32 | TIM         | HACKMAN      |
+|       33 | MILLA       | PECK         |
+|       34 | AUDREY      | OLIVIER      |
+|       35 | JUDY        | DEAN         |
+|       36 | BURT        | DUKAKIS      |
+|       37 | VAL         | BOLGER       |
+|       38 | TOM         | MCKELLEN     |
+|       39 | GOLDIE      | BRODY        |
+|       40 | JOHNNY      | CAGE         |
+|       41 | JODIE       | DEGENERES    |
+|       42 | TOM         | MIRANDA      |
+|       43 | KIRK        | JOVOVICH     |
+|       44 | NICK        | STALLONE     |
+|       45 | REESE       | KILMER       |
+|       46 | PARKER      | GOLDBERG     |
+|       47 | JULIA       | BARRYMORE    |
+|       48 | FRANCES     | DAY-LEWIS    |
+|       49 | ANNE        | CRONYN       |
+|       50 | NATALIE     | HOPKINS      |
+|       51 | GARY        | PHOENIX      |
+|       52 | CARMEN      | HUNT         |
+|       53 | MENA        | TEMPLE       |
+|       54 | PENELOPE    | PINKETT      |
+|       55 | FAY         | KILMER       |
+|       56 | DAN         | HARRIS       |
+|       57 | JUDE        | CRUISE       |
+|       58 | CHRISTIAN   | AKROYD       |
+|       59 | DUSTIN      | TAUTOU       |
+|       60 | HENRY       | BERRY        |
+|       61 | CHRISTIAN   | NEESON       |
+|       62 | JAYNE       | NEESON       |
+|       64 | RAY         | JOHANSSON    |
+|       65 | ANGELA      | HUDSON       |
+|       66 | MARY        | TANDY        |
+|       67 | JESSICA     | BAILEY       |
+|       69 | KENNETH     | PALTROW      |
+|       70 | MICHELLE    | MCCONAUGHEY  |
+|       71 | ADAM        | GRANT        |
+|       73 | GARY        | PENN         |
+|       74 | MILLA       | KEITEL       |
+|       75 | BURT        | POSEY        |
+|       76 | ANGELINA    | ASTAIRE      |
+|       77 | CARY        | MCCONAUGHEY  |
+|       78 | GROUCHO     | SINATRA      |
+|       79 | MAE         | HOFFMAN      |
+|       80 | RALPH       | CRUZ         |
+|       81 | SCARLETT    | DAMON        |
+|       82 | WOODY       | JOLIE        |
+|       84 | JAMES       | PITT         |
+|       85 | MINNIE      | ZELLWEGER    |
+|       86 | GREG        | CHAPLIN      |
+|       87 | SPENCER     | PECK         |
+|       88 | KENNETH     | PESCI        |
+|       89 | CHARLIZE    | DENCH        |
+|       90 | SEAN        | GUINESS      |
+|       91 | CHRISTOPHER | BERRY        |
+|       92 | KIRSTEN     | AKROYD       |
+|       93 | ELLEN       | PRESLEY      |
+|       94 | KENNETH     | TORN         |
+|       97 | MEG         | HAWKE        |
+|       98 | CHRIS       | BRIDGES      |
+|       99 | JIM         | MOSTEL       |
+|      100 | SPENCER     | DEPP         |
+|      101 | SUSAN       | DAVIS        |
+|      102 | WALTER      | TORN         |
+|      103 | MATTHEW     | LEIGH        |
+|      104 | PENELOPE    | CRONYN       |
+|      105 | SIDNEY      | CROWE        |
+|      106 | GROUCHO     | DUNST        |
+|      107 | GINA        | DEGENERES    |
+|      108 | WARREN      | NOLTE        |
+|      109 | SYLVESTER   | DERN         |
+|      110 | SUSAN       | DAVIS        |
+|      111 | CAMERON     | ZELLWEGER    |
+|      112 | RUSSELL     | BACALL       |
+|      113 | MORGAN      | HOPKINS      |
+|      114 | MORGAN      | MCDORMAND    |
+|      115 | HARRISON    | BALE         |
+|      116 | DAN         | STREEP       |
+|      117 | RENEE       | TRACY        |
+|      118 | CUBA        | ALLEN        |
+|      119 | WARREN      | JACKMAN      |
+|      120 | PENELOPE    | MONROE       |
+|      121 | LIZA        | BERGMAN      |
+|      122 | SALMA       | NOLTE        |
+|      123 | JULIANNE    | DENCH        |
+|      124 | SCARLETT    | BENING       |
+|      125 | ALBERT      | NOLTE        |
+|      126 | FRANCES     | TOMEI        |
+|      127 | KEVIN       | GARLAND      |
+|      128 | CATE        | MCQUEEN      |
+|      129 | DARYL       | CRAWFORD     |
+|      130 | GRETA       | KEITEL       |
+|      131 | JANE        | JACKMAN      |
+|      132 | ADAM        | HOPPER       |
+|      133 | RICHARD     | PENN         |
+|      134 | GENE        | HOPKINS      |
+|      135 | RITA        | REYNOLDS     |
+|      136 | ED          | MANSFIELD    |
+|      138 | LUCILLE     | DEE          |
+|      139 | EWAN        | GOODING      |
+|      140 | WHOOPI      | HURT         |
+|      141 | CATE        | HARRIS       |
+|      142 | JADA        | RYDER        |
+|      143 | RIVER       | DEAN         |
+|      145 | KIM         | ALLEN        |
+|      146 | ALBERT      | JOHANSSON    |
+|      148 | EMILY       | DEE          |
+|      149 | RUSSELL     | TEMPLE       |
+|      150 | JAYNE       | NOLTE        |
+|      151 | GEOFFREY    | HESTON       |
+|      152 | BEN         | HARRIS       |
+|      153 | MINNIE      | KILMER       |
+|      154 | MERYL       | GIBSON       |
+|      155 | IAN         | TANDY        |
+|      157 | GRETA       | MALDEN       |
+|      158 | VIVIEN      | BASINGER     |
+|      159 | LAURA       | BRODY        |
+|      160 | CHRIS       | DEPP         |
+|      161 | HARVEY      | HOPE         |
+|      162 | OPRAH       | KILMER       |
+|      165 | AL          | GARLAND      |
+|      166 | NICK        | DEGENERES    |
+|      167 | LAURENCE    | BULLOCK      |
+|      169 | KENNETH     | HOFFMAN      |
+|      170 | MENA        | HOPPER       |
+|      171 | OLYMPIA     | PFEIFFER     |
+|      173 | ALAN        | DREYFUSS     |
+|      174 | MICHAEL     | BENING       |
+|      175 | WILLIAM     | HACKMAN      |
+|      176 | JON         | CHASE        |
+|      177 | GENE        | MCKELLEN     |
+|      178 | LISA        | MONROE       |
+|      179 | ED          | GUINESS      |
+|      180 | JEFF        | SILVERSTONE  |
+|      181 | MATTHEW     | CARREY       |
+|      182 | DEBBIE      | AKROYD       |
+|      183 | RUSSELL     | CLOSE        |
+|      184 | HUMPHREY    | GARLAND      |
+|      185 | MICHAEL     | BOLGER       |
+|      186 | JULIA       | ZELLWEGER    |
+|      187 | RENEE       | BALL         |
+|      188 | ROCK        | DUKAKIS      |
+|      189 | CUBA        | BIRCH        |
+|      190 | AUDREY      | BAILEY       |
+|      191 | GREGORY     | GOODING      |
+|      192 | JOHN        | SUVARI       |
+|      193 | BURT        | TEMPLE       |
+|      194 | MERYL       | ALLEN        |
+|      195 | JAYNE       | SILVERSTONE  |
+|      198 | MARY        | KEITEL       |
+|      199 | JULIA       | FAWCETT      |
+|      200 | THORA       | TEMPLE       |
+|        2 | NICK        | WAHLBERG     |
+|       13 | UMA         | WOOD         |
+|       29 | ALEC        | WAYNE        |
+|       63 | CAMERON     | WRAY         |
+|       68 | RIP         | WINSLET      |
+|       72 | SEAN        | WILLIAMS     |
+|       83 | BEN         | WILLIS       |
+|       95 | DARYL       | WAHLBERG     |
+|       96 | GENE        | WILLIS       |
+|      137 | MORGAN      | WILLIAMS     |
+|      144 | ANGELA      | WITHERSPOON  |
+|      147 | FAY         | WINSLET      |
+|      156 | FAY         | WOOD         |
+|      163 | CHRISTOPHER | WEST         |
+|      164 | HUMPHREY    | WILLIS       |
+|      168 | WILL        | WILSON       |
+|      172 | GROUCHO     | WILLIAMS     |
+|      196 | BELA        | WALKEN       |
+|      197 | REESE       | WEST         |
++----------+-------------+--------------+
+200 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor where last_name like 'W%';
++----------+-------------+-------------+
+| actor_id | first_name  | last_name   |
++----------+-------------+-------------+
+|        2 | NICK        | WAHLBERG    |
+|       95 | DARYL       | WAHLBERG    |
+|      196 | BELA        | WALKEN      |
+|       29 | ALEC        | WAYNE       |
+|      163 | CHRISTOPHER | WEST        |
+|      197 | REESE       | WEST        |
+|       72 | SEAN        | WILLIAMS    |
+|      137 | MORGAN      | WILLIAMS    |
+|      172 | GROUCHO     | WILLIAMS    |
+|       83 | BEN         | WILLIS      |
+|       96 | GENE        | WILLIS      |
+|      164 | HUMPHREY    | WILLIS      |
+|      168 | WILL        | WILSON      |
+|       68 | RIP         | WINSLET     |
+|      147 | FAY         | WINSLET     |
+|      144 | ANGELA      | WITHERSPOON |
+|       13 | UMA         | WOOD        |
+|      156 | FAY         | WOOD        |
+|       63 | CAMERON     | WRAY        |
++----------+-------------+-------------+
+19 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor where last_name like 'W%' order by last_name desc;
++----------+-------------+-------------+
+| actor_id | first_name  | last_name   |
++----------+-------------+-------------+
+|       63 | CAMERON     | WRAY        |
+|      156 | FAY         | WOOD        |
+|       13 | UMA         | WOOD        |
+|      144 | ANGELA      | WITHERSPOON |
+|      147 | FAY         | WINSLET     |
+|       68 | RIP         | WINSLET     |
+|      168 | WILL        | WILSON      |
+|      164 | HUMPHREY    | WILLIS      |
+|       96 | GENE        | WILLIS      |
+|       83 | BEN         | WILLIS      |
+|      172 | GROUCHO     | WILLIAMS    |
+|      137 | MORGAN      | WILLIAMS    |
+|       72 | SEAN        | WILLIAMS    |
+|      197 | REESE       | WEST        |
+|      163 | CHRISTOPHER | WEST        |
+|       29 | ALEC        | WAYNE       |
+|      196 | BELA        | WALKEN      |
+|       95 | DARYL       | WAHLBERG    |
+|        2 | NICK        | WAHLBERG    |
++----------+-------------+-------------+
+19 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select actor_id, first_name, last_name from actor where last_name like 'W%' and first_name like 'A%' order by last_name desc;
++----------+------------+-------------+
+| actor_id | first_name | last_name   |
++----------+------------+-------------+
+|      144 | ANGELA     | WITHERSPOON |
+|       29 | ALEC       | WAYNE       |
++----------+------------+-------------+
+2 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select * from actor
+                                       -> ;
++----------+-------------+--------------+---------------------+
+| actor_id | first_name  | last_name    | last_update         |
++----------+-------------+--------------+---------------------+
+|        1 | PENELOPE    | GUINESS      | 2006-02-15 04:34:33 |
+|        2 | NICK        | WAHLBERG     | 2006-02-15 04:34:33 |
+|        3 | ED          | CHASE        | 2006-02-15 04:34:33 |
+|        4 | JENNIFER    | DAVIS        | 2006-02-15 04:34:33 |
+|        5 | JOHNNY      | LOLLOBRIGIDA | 2006-02-15 04:34:33 |
+|        6 | BETTE       | NICHOLSON    | 2006-02-15 04:34:33 |
+|        7 | GRACE       | MOSTEL       | 2006-02-15 04:34:33 |
+|        8 | MATTHEW     | JOHANSSON    | 2006-02-15 04:34:33 |
+|        9 | JOE         | SWANK        | 2006-02-15 04:34:33 |
+|       10 | CHRISTIAN   | GABLE        | 2006-02-15 04:34:33 |
+|       11 | ZERO        | CAGE         | 2006-02-15 04:34:33 |
+|       12 | KARL        | BERRY        | 2006-02-15 04:34:33 |
+|       13 | UMA         | WOOD         | 2006-02-15 04:34:33 |
+|       14 | VIVIEN      | BERGEN       | 2006-02-15 04:34:33 |
+|       15 | CUBA        | OLIVIER      | 2006-02-15 04:34:33 |
+|       16 | FRED        | COSTNER      | 2006-02-15 04:34:33 |
+|       17 | HELEN       | VOIGHT       | 2006-02-15 04:34:33 |
+|       18 | DAN         | TORN         | 2006-02-15 04:34:33 |
+|       19 | BOB         | FAWCETT      | 2006-02-15 04:34:33 |
+|       20 | LUCILLE     | TRACY        | 2006-02-15 04:34:33 |
+|       21 | KIRSTEN     | PALTROW      | 2006-02-15 04:34:33 |
+|       22 | ELVIS       | MARX         | 2006-02-15 04:34:33 |
+|       23 | SANDRA      | KILMER       | 2006-02-15 04:34:33 |
+|       24 | CAMERON     | STREEP       | 2006-02-15 04:34:33 |
+|       25 | KEVIN       | BLOOM        | 2006-02-15 04:34:33 |
+|       26 | RIP         | CRAWFORD     | 2006-02-15 04:34:33 |
+|       27 | JULIA       | MCQUEEN      | 2006-02-15 04:34:33 |
+|       28 | WOODY       | HOFFMAN      | 2006-02-15 04:34:33 |
+|       29 | ALEC        | WAYNE        | 2006-02-15 04:34:33 |
+|       30 | SANDRA      | PECK         | 2006-02-15 04:34:33 |
+|       31 | SISSY       | SOBIESKI     | 2006-02-15 04:34:33 |
+|       32 | TIM         | HACKMAN      | 2006-02-15 04:34:33 |
+|       33 | MILLA       | PECK         | 2006-02-15 04:34:33 |
+|       34 | AUDREY      | OLIVIER      | 2006-02-15 04:34:33 |
+|       35 | JUDY        | DEAN         | 2006-02-15 04:34:33 |
+|       36 | BURT        | DUKAKIS      | 2006-02-15 04:34:33 |
+|       37 | VAL         | BOLGER       | 2006-02-15 04:34:33 |
+|       38 | TOM         | MCKELLEN     | 2006-02-15 04:34:33 |
+|       39 | GOLDIE      | BRODY        | 2006-02-15 04:34:33 |
+|       40 | JOHNNY      | CAGE         | 2006-02-15 04:34:33 |
+|       41 | JODIE       | DEGENERES    | 2006-02-15 04:34:33 |
+|       42 | TOM         | MIRANDA      | 2006-02-15 04:34:33 |
+|       43 | KIRK        | JOVOVICH     | 2006-02-15 04:34:33 |
+|       44 | NICK        | STALLONE     | 2006-02-15 04:34:33 |
+|       45 | REESE       | KILMER       | 2006-02-15 04:34:33 |
+|       46 | PARKER      | GOLDBERG     | 2006-02-15 04:34:33 |
+|       47 | JULIA       | BARRYMORE    | 2006-02-15 04:34:33 |
+|       48 | FRANCES     | DAY-LEWIS    | 2006-02-15 04:34:33 |
+|       49 | ANNE        | CRONYN       | 2006-02-15 04:34:33 |
+|       50 | NATALIE     | HOPKINS      | 2006-02-15 04:34:33 |
+|       51 | GARY        | PHOENIX      | 2006-02-15 04:34:33 |
+|       52 | CARMEN      | HUNT         | 2006-02-15 04:34:33 |
+|       53 | MENA        | TEMPLE       | 2006-02-15 04:34:33 |
+|       54 | PENELOPE    | PINKETT      | 2006-02-15 04:34:33 |
+|       55 | FAY         | KILMER       | 2006-02-15 04:34:33 |
+|       56 | DAN         | HARRIS       | 2006-02-15 04:34:33 |
+|       57 | JUDE        | CRUISE       | 2006-02-15 04:34:33 |
+|       58 | CHRISTIAN   | AKROYD       | 2006-02-15 04:34:33 |
+|       59 | DUSTIN      | TAUTOU       | 2006-02-15 04:34:33 |
+|       60 | HENRY       | BERRY        | 2006-02-15 04:34:33 |
+|       61 | CHRISTIAN   | NEESON       | 2006-02-15 04:34:33 |
+|       62 | JAYNE       | NEESON       | 2006-02-15 04:34:33 |
+|       63 | CAMERON     | WRAY         | 2006-02-15 04:34:33 |
+|       64 | RAY         | JOHANSSON    | 2006-02-15 04:34:33 |
+|       65 | ANGELA      | HUDSON       | 2006-02-15 04:34:33 |
+|       66 | MARY        | TANDY        | 2006-02-15 04:34:33 |
+|       67 | JESSICA     | BAILEY       | 2006-02-15 04:34:33 |
+|       68 | RIP         | WINSLET      | 2006-02-15 04:34:33 |
+|       69 | KENNETH     | PALTROW      | 2006-02-15 04:34:33 |
+|       70 | MICHELLE    | MCCONAUGHEY  | 2006-02-15 04:34:33 |
+|       71 | ADAM        | GRANT        | 2006-02-15 04:34:33 |
+|       72 | SEAN        | WILLIAMS     | 2006-02-15 04:34:33 |
+|       73 | GARY        | PENN         | 2006-02-15 04:34:33 |
+|       74 | MILLA       | KEITEL       | 2006-02-15 04:34:33 |
+|       75 | BURT        | POSEY        | 2006-02-15 04:34:33 |
+|       76 | ANGELINA    | ASTAIRE      | 2006-02-15 04:34:33 |
+|       77 | CARY        | MCCONAUGHEY  | 2006-02-15 04:34:33 |
+|       78 | GROUCHO     | SINATRA      | 2006-02-15 04:34:33 |
+|       79 | MAE         | HOFFMAN      | 2006-02-15 04:34:33 |
+|       80 | RALPH       | CRUZ         | 2006-02-15 04:34:33 |
+|       81 | SCARLETT    | DAMON        | 2006-02-15 04:34:33 |
+|       82 | WOODY       | JOLIE        | 2006-02-15 04:34:33 |
+|       83 | BEN         | WILLIS       | 2006-02-15 04:34:33 |
+|       84 | JAMES       | PITT         | 2006-02-15 04:34:33 |
+|       85 | MINNIE      | ZELLWEGER    | 2006-02-15 04:34:33 |
+|       86 | GREG        | CHAPLIN      | 2006-02-15 04:34:33 |
+|       87 | SPENCER     | PECK         | 2006-02-15 04:34:33 |
+|       88 | KENNETH     | PESCI        | 2006-02-15 04:34:33 |
+|       89 | CHARLIZE    | DENCH        | 2006-02-15 04:34:33 |
+|       90 | SEAN        | GUINESS      | 2006-02-15 04:34:33 |
+|       91 | CHRISTOPHER | BERRY        | 2006-02-15 04:34:33 |
+|       92 | KIRSTEN     | AKROYD       | 2006-02-15 04:34:33 |
+|       93 | ELLEN       | PRESLEY      | 2006-02-15 04:34:33 |
+|       94 | KENNETH     | TORN         | 2006-02-15 04:34:33 |
+|       95 | DARYL       | WAHLBERG     | 2006-02-15 04:34:33 |
+|       96 | GENE        | WILLIS       | 2006-02-15 04:34:33 |
+|       97 | MEG         | HAWKE        | 2006-02-15 04:34:33 |
+|       98 | CHRIS       | BRIDGES      | 2006-02-15 04:34:33 |
+|       99 | JIM         | MOSTEL       | 2006-02-15 04:34:33 |
+|      100 | SPENCER     | DEPP         | 2006-02-15 04:34:33 |
+|      101 | SUSAN       | DAVIS        | 2006-02-15 04:34:33 |
+|      102 | WALTER      | TORN         | 2006-02-15 04:34:33 |
+|      103 | MATTHEW     | LEIGH        | 2006-02-15 04:34:33 |
+|      104 | PENELOPE    | CRONYN       | 2006-02-15 04:34:33 |
+|      105 | SIDNEY      | CROWE        | 2006-02-15 04:34:33 |
+|      106 | GROUCHO     | DUNST        | 2006-02-15 04:34:33 |
+|      107 | GINA        | DEGENERES    | 2006-02-15 04:34:33 |
+|      108 | WARREN      | NOLTE        | 2006-02-15 04:34:33 |
+|      109 | SYLVESTER   | DERN         | 2006-02-15 04:34:33 |
+|      110 | SUSAN       | DAVIS        | 2006-02-15 04:34:33 |
+|      111 | CAMERON     | ZELLWEGER    | 2006-02-15 04:34:33 |
+|      112 | RUSSELL     | BACALL       | 2006-02-15 04:34:33 |
+|      113 | MORGAN      | HOPKINS      | 2006-02-15 04:34:33 |
+|      114 | MORGAN      | MCDORMAND    | 2006-02-15 04:34:33 |
+|      115 | HARRISON    | BALE         | 2006-02-15 04:34:33 |
+|      116 | DAN         | STREEP       | 2006-02-15 04:34:33 |
+|      117 | RENEE       | TRACY        | 2006-02-15 04:34:33 |
+|      118 | CUBA        | ALLEN        | 2006-02-15 04:34:33 |
+|      119 | WARREN      | JACKMAN      | 2006-02-15 04:34:33 |
+|      120 | PENELOPE    | MONROE       | 2006-02-15 04:34:33 |
+|      121 | LIZA        | BERGMAN      | 2006-02-15 04:34:33 |
+|      122 | SALMA       | NOLTE        | 2006-02-15 04:34:33 |
+|      123 | JULIANNE    | DENCH        | 2006-02-15 04:34:33 |
+|      124 | SCARLETT    | BENING       | 2006-02-15 04:34:33 |
+|      125 | ALBERT      | NOLTE        | 2006-02-15 04:34:33 |
+|      126 | FRANCES     | TOMEI        | 2006-02-15 04:34:33 |
+|      127 | KEVIN       | GARLAND      | 2006-02-15 04:34:33 |
+|      128 | CATE        | MCQUEEN      | 2006-02-15 04:34:33 |
+|      129 | DARYL       | CRAWFORD     | 2006-02-15 04:34:33 |
+|      130 | GRETA       | KEITEL       | 2006-02-15 04:34:33 |
+|      131 | JANE        | JACKMAN      | 2006-02-15 04:34:33 |
+|      132 | ADAM        | HOPPER       | 2006-02-15 04:34:33 |
+|      133 | RICHARD     | PENN         | 2006-02-15 04:34:33 |
+|      134 | GENE        | HOPKINS      | 2006-02-15 04:34:33 |
+|      135 | RITA        | REYNOLDS     | 2006-02-15 04:34:33 |
+|      136 | ED          | MANSFIELD    | 2006-02-15 04:34:33 |
+|      137 | MORGAN      | WILLIAMS     | 2006-02-15 04:34:33 |
+|      138 | LUCILLE     | DEE          | 2006-02-15 04:34:33 |
+|      139 | EWAN        | GOODING      | 2006-02-15 04:34:33 |
+|      140 | WHOOPI      | HURT         | 2006-02-15 04:34:33 |
+|      141 | CATE        | HARRIS       | 2006-02-15 04:34:33 |
+|      142 | JADA        | RYDER        | 2006-02-15 04:34:33 |
+|      143 | RIVER       | DEAN         | 2006-02-15 04:34:33 |
+|      144 | ANGELA      | WITHERSPOON  | 2006-02-15 04:34:33 |
+|      145 | KIM         | ALLEN        | 2006-02-15 04:34:33 |
+|      146 | ALBERT      | JOHANSSON    | 2006-02-15 04:34:33 |
+|      147 | FAY         | WINSLET      | 2006-02-15 04:34:33 |
+|      148 | EMILY       | DEE          | 2006-02-15 04:34:33 |
+|      149 | RUSSELL     | TEMPLE       | 2006-02-15 04:34:33 |
+|      150 | JAYNE       | NOLTE        | 2006-02-15 04:34:33 |
+|      151 | GEOFFREY    | HESTON       | 2006-02-15 04:34:33 |
+|      152 | BEN         | HARRIS       | 2006-02-15 04:34:33 |
+|      153 | MINNIE      | KILMER       | 2006-02-15 04:34:33 |
+|      154 | MERYL       | GIBSON       | 2006-02-15 04:34:33 |
+|      155 | IAN         | TANDY        | 2006-02-15 04:34:33 |
+|      156 | FAY         | WOOD         | 2006-02-15 04:34:33 |
+|      157 | GRETA       | MALDEN       | 2006-02-15 04:34:33 |
+|      158 | VIVIEN      | BASINGER     | 2006-02-15 04:34:33 |
+|      159 | LAURA       | BRODY        | 2006-02-15 04:34:33 |
+|      160 | CHRIS       | DEPP         | 2006-02-15 04:34:33 |
+|      161 | HARVEY      | HOPE         | 2006-02-15 04:34:33 |
+|      162 | OPRAH       | KILMER       | 2006-02-15 04:34:33 |
+|      163 | CHRISTOPHER | WEST         | 2006-02-15 04:34:33 |
+|      164 | HUMPHREY    | WILLIS       | 2006-02-15 04:34:33 |
+|      165 | AL          | GARLAND      | 2006-02-15 04:34:33 |
+|      166 | NICK        | DEGENERES    | 2006-02-15 04:34:33 |
+|      167 | LAURENCE    | BULLOCK      | 2006-02-15 04:34:33 |
+|      168 | WILL        | WILSON       | 2006-02-15 04:34:33 |
+|      169 | KENNETH     | HOFFMAN      | 2006-02-15 04:34:33 |
+|      170 | MENA        | HOPPER       | 2006-02-15 04:34:33 |
+|      171 | OLYMPIA     | PFEIFFER     | 2006-02-15 04:34:33 |
+|      172 | GROUCHO     | WILLIAMS     | 2006-02-15 04:34:33 |
+|      173 | ALAN        | DREYFUSS     | 2006-02-15 04:34:33 |
+|      174 | MICHAEL     | BENING       | 2006-02-15 04:34:33 |
+|      175 | WILLIAM     | HACKMAN      | 2006-02-15 04:34:33 |
+|      176 | JON         | CHASE        | 2006-02-15 04:34:33 |
+|      177 | GENE        | MCKELLEN     | 2006-02-15 04:34:33 |
+|      178 | LISA        | MONROE       | 2006-02-15 04:34:33 |
+|      179 | ED          | GUINESS      | 2006-02-15 04:34:33 |
+|      180 | JEFF        | SILVERSTONE  | 2006-02-15 04:34:33 |
+|      181 | MATTHEW     | CARREY       | 2006-02-15 04:34:33 |
+|      182 | DEBBIE      | AKROYD       | 2006-02-15 04:34:33 |
+|      183 | RUSSELL     | CLOSE        | 2006-02-15 04:34:33 |
+|      184 | HUMPHREY    | GARLAND      | 2006-02-15 04:34:33 |
+|      185 | MICHAEL     | BOLGER       | 2006-02-15 04:34:33 |
+|      186 | JULIA       | ZELLWEGER    | 2006-02-15 04:34:33 |
+|      187 | RENEE       | BALL         | 2006-02-15 04:34:33 |
+|      188 | ROCK        | DUKAKIS      | 2006-02-15 04:34:33 |
+|      189 | CUBA        | BIRCH        | 2006-02-15 04:34:33 |
+|      190 | AUDREY      | BAILEY       | 2006-02-15 04:34:33 |
+|      191 | GREGORY     | GOODING      | 2006-02-15 04:34:33 |
+|      192 | JOHN        | SUVARI       | 2006-02-15 04:34:33 |
+|      193 | BURT        | TEMPLE       | 2006-02-15 04:34:33 |
+|      194 | MERYL       | ALLEN        | 2006-02-15 04:34:33 |
+|      195 | JAYNE       | SILVERSTONE  | 2006-02-15 04:34:33 |
+|      196 | BELA        | WALKEN       | 2006-02-15 04:34:33 |
+|      197 | REESE       | WEST         | 2006-02-15 04:34:33 |
+|      198 | MARY        | KEITEL       | 2006-02-15 04:34:33 |
+|      199 | JULIA       | FAWCETT      | 2006-02-15 04:34:33 |
+|      200 | THORA       | TEMPLE       | 2006-02-15 04:34:33 |
++----------+-------------+--------------+---------------------+
+200 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select distinct(last_name) from actor;
++--------------+
+| last_name    |
++--------------+
+| AKROYD       |
+| ALLEN        |
+| ASTAIRE      |
+| BACALL       |
+| BAILEY       |
+| BALE         |
+| BALL         |
+| BARRYMORE    |
+| BASINGER     |
+| BENING       |
+| BERGEN       |
+| BERGMAN      |
+| BERRY        |
+| BIRCH        |
+| BLOOM        |
+| BOLGER       |
+| BRIDGES      |
+| BRODY        |
+| BULLOCK      |
+| CAGE         |
+| CARREY       |
+| CHAPLIN      |
+| CHASE        |
+| CLOSE        |
+| COSTNER      |
+| CRAWFORD     |
+| CRONYN       |
+| CROWE        |
+| CRUISE       |
+| CRUZ         |
+| DAMON        |
+| DAVIS        |
+| DAY-LEWIS    |
+| DEAN         |
+| DEE          |
+| DEGENERES    |
+| DENCH        |
+| DEPP         |
+| DERN         |
+| DREYFUSS     |
+| DUKAKIS      |
+| DUNST        |
+| FAWCETT      |
+| GABLE        |
+| GARLAND      |
+| GIBSON       |
+| GOLDBERG     |
+| GOODING      |
+| GRANT        |
+| GUINESS      |
+| HACKMAN      |
+| HARRIS       |
+| HAWKE        |
+| HESTON       |
+| HOFFMAN      |
+| HOPE         |
+| HOPKINS      |
+| HOPPER       |
+| HUDSON       |
+| HUNT         |
+| HURT         |
+| JACKMAN      |
+| JOHANSSON    |
+| JOLIE        |
+| JOVOVICH     |
+| KEITEL       |
+| KILMER       |
+| LEIGH        |
+| LOLLOBRIGIDA |
+| MALDEN       |
+| MANSFIELD    |
+| MARX         |
+| MCCONAUGHEY  |
+| MCDORMAND    |
+| MCKELLEN     |
+| MCQUEEN      |
+| MIRANDA      |
+| MONROE       |
+| MOSTEL       |
+| NEESON       |
+| NICHOLSON    |
+| NOLTE        |
+| OLIVIER      |
+| PALTROW      |
+| PECK         |
+| PENN         |
+| PESCI        |
+| PFEIFFER     |
+| PHOENIX      |
+| PINKETT      |
+| PITT         |
+| POSEY        |
+| PRESLEY      |
+| REYNOLDS     |
+| RYDER        |
+| SILVERSTONE  |
+| SINATRA      |
+| SOBIESKI     |
+| STALLONE     |
+| STREEP       |
+| SUVARI       |
+| SWANK        |
+| TANDY        |
+| TAUTOU       |
+| TEMPLE       |
+| TOMEI        |
+| TORN         |
+| TRACY        |
+| VOIGHT       |
+| WAHLBERG     |
+| WALKEN       |
+| WAYNE        |
+| WEST         |
+| WILLIAMS     |
+| WILLIS       |
+| WILSON       |
+| WINSLET      |
+| WITHERSPOON  |
+| WOOD         |
+| WRAY         |
+| ZELLWEGER    |
++--------------+
+121 rows in set (0.0025 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) from actor where last_name = 'WILLIAMS';
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) from actor where last_name = 'WILLIS';
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) last_name;
++-----------+
+| last_name |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.0004 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) last_name like 'P%' from actor;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like 'P%' from actor' at line 1
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) last_name from actor where last_name like 'W%';
++-----------+
+| last_name |
++-----------+
+|        19 |
++-----------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > desc payment;
++--------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field        | Type              | Null | Key | Default           | Extra                                         |
++--------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| payment_id   | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| customer_id  | smallint unsigned | NO   | MUL | NULL              |                                               |
+| staff_id     | tinyint unsigned  | NO   | MUL | NULL              |                                               |
+| rental_id    | int               | YES  | MUL | NULL              |                                               |
+| amount       | decimal(5,2)      | NO   |     | NULL              |                                               |
+| payment_date | datetime          | NO   |     | NULL              |                                               |
+| last_update  | timestamp         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++--------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+7 rows in set (0.0036 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) from customer_id
+                                       -> ;
+ERROR: 1146 (42S02): Table 'sakila.customer_id' doesn't exist
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) from payment;
++----------+
+| count(*) |
++----------+
+|    16044 |
++----------+
+1 row in set (0.0234 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select amount from payment
+                                       -> where customer_id =1;
++--------+
+| amount |
++--------+
+|   2.99 |
+|   0.99 |
+|   5.99 |
+|   0.99 |
+|   9.99 |
+|   4.99 |
+|   4.99 |
+|   0.99 |
+|   3.99 |
+|   5.99 |
+|   5.99 |
+|   4.99 |
+|   4.99 |
+|   7.99 |
+|   2.99 |
+|   4.99 |
+|   4.99 |
+|   0.99 |
+|   0.99 |
+|   2.99 |
+|   2.99 |
+|   4.99 |
+|   3.99 |
+|   0.99 |
+|   4.99 |
+|   0.99 |
+|   0.99 |
+|   2.99 |
+|   0.99 |
+|   1.99 |
+|   2.99 |
+|   5.99 |
++--------+
+32 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select sum(amount) as total;
+ERROR: 1054 (42S22): Unknown column 'amount' in 'field list'
+ MySQL  localhost:3306 ssl  sakila  SQL > select sum(amount) as total
+                                       -> from payment where customer_id =1;
++--------+
+| total  |
++--------+
+| 118.68 |
++--------+
+1 row in set (0.0027 sec)
