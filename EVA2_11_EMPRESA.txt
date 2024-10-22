@@ -1,0 +1,716 @@
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect -mc root@localhost
+WARNING: The -mc option was deprecated, please use --mc instead. (Option has been processed as --mc).
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd_e2
+Default schema set to `tbd_e2`.
+Fetching global names, object names from `tbd_e2` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_e2  SQL > show databases
+                                       -> ;
++--------------------+
+| Database           |
++--------------------+
+| empresa            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_automovil      |
+| tbd_e2             |
+| tbd_el             |
+| world              |
++--------------------+
+10 rows in set (0.0033 sec)
+ MySQL  localhost:3306 ssl  tbd_e2  SQL > use empresa
+Default schema set to `empresa`.
+Fetching global names, object names from `empresa` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     e.EMPLOYEE_ID,
+                                        ->     e.FIRST_NAME,
+                                        ->     e.LAST_NAME,
+                                        ->     e.EMAIL,
+                                        ->     e.PHONE_NUMBER,
+                                        ->     e.HIRE_DATE,
+                                        ->     e.JOB_ID,
+                                        ->     e.SALARY,
+                                        ->     d.DEPARTMENT_NAME
+                                        -> FROM
+                                        ->     employees e
+                                        -> JOIN
+                                        ->     departments d
+                                        -> ON
+                                        ->     e.DEPARTMENT_ID = d.DEPARTMENT_ID
+                                        -> ORDER BY
+                                        ->     e.EMPLOYEE_ID;
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+------------------+
+| EMPLOYEE_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | PHONE_NUMBER       | HIRE_DATE  | JOB_ID     | SALARY   | DEPARTMENT_NAME  |
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+------------------+
+|         100 | Steven      | King        | SKING    | 515.123.4567       | 1987-06-17 | AD_PRES    | 24000.00 | Executive        |
+|         101 | Neena       | Kochhar     | NKOCHHAR | 515.123.4568       | 1987-06-18 | AD_VP      | 17000.00 | Executive        |
+|         102 | Lex         | De Haan     | LDEHAAN  | 515.123.4569       | 1987-06-19 | AD_VP      | 17000.00 | Executive        |
+|         103 | Alexander   | Hunold      | AHUNOLD  | 590.423.4567       | 1987-06-20 | IT_PROG    |  9000.00 | IT               |
+|         104 | Bruce       | Ernst       | BERNST   | 590.423.4568       | 1987-06-21 | IT_PROG    |  6000.00 | IT               |
+|         105 | David       | Austin      | DAUSTIN  | 590.423.4569       | 1987-06-22 | IT_PROG    |  4800.00 | IT               |
+|         106 | Valli       | Pataballa   | VPATABAL | 590.423.4560       | 1987-06-23 | IT_PROG    |  4800.00 | IT               |
+|         107 | Diana       | Lorentz     | DLORENTZ | 590.423.5567       | 1987-06-24 | IT_PROG    |  4200.00 | IT               |
+|         108 | Nancy       | Greenberg   | NGREENBE | 515.124.4569       | 1987-06-25 | FI_MGR     | 12000.00 | Finance          |
+|         109 | Daniel      | Faviet      | DFAVIET  | 515.124.4169       | 1987-06-26 | FI_ACCOUNT |  9000.00 | Finance          |
+|         110 | John        | Chen        | JCHEN    | 515.124.4269       | 1987-06-27 | FI_ACCOUNT |  8200.00 | Finance          |
+|         111 | Ismael      | Sciarra     | ISCIARRA | 515.124.4369       | 1987-06-28 | FI_ACCOUNT |  7700.00 | Finance          |
+|         112 | Jose Manuel | Urman       | JMURMAN  | 515.124.4469       | 1987-06-29 | FI_ACCOUNT |  7800.00 | Finance          |
+|         113 | Luis        | Popp        | LPOPP    | 515.124.4567       | 1987-06-30 | FI_ACCOUNT |  6900.00 | Finance          |
+|         114 | Den         | Raphaely    | DRAPHEAL | 515.127.4561       | 1987-07-01 | PU_MAN     | 11000.00 | Purchasing       |
+|         115 | Alexander   | Khoo        | AKHOO    | 515.127.4562       | 1987-07-02 | PU_CLERK   |  3100.00 | Purchasing       |
+|         116 | Shelli      | Baida       | SBAIDA   | 515.127.4563       | 1987-07-03 | PU_CLERK   |  2900.00 | Purchasing       |
+|         117 | Sigal       | Tobias      | STOBIAS  | 515.127.4564       | 1987-07-04 | PU_CLERK   |  2800.00 | Purchasing       |
+|         118 | Guy         | Himuro      | GHIMURO  | 515.127.4565       | 1987-07-05 | PU_CLERK   |  2600.00 | Purchasing       |
+|         119 | Karen       | Colmenares  | KCOLMENA | 515.127.4566       | 1987-07-06 | PU_CLERK   |  2500.00 | Purchasing       |
+|         120 | Matthew     | Weiss       | MWEISS   | 650.123.1234       | 1987-07-07 | ST_MAN     |  8000.00 | Shipping         |
+|         121 | Adam        | Fripp       | AFRIPP   | 650.123.2234       | 1987-07-08 | ST_MAN     |  8200.00 | Shipping         |
+|         122 | Payam       | Kaufling    | PKAUFLIN | 650.123.3234       | 1987-07-09 | ST_MAN     |  7900.00 | Shipping         |
+|         123 | Shanta      | Vollman     | SVOLLMAN | 650.123.4234       | 1987-07-10 | ST_MAN     |  6500.00 | Shipping         |
+|         124 | Kevin       | Mourgos     | KMOURGOS | 650.123.5234       | 1987-07-11 | ST_MAN     |  5800.00 | Shipping         |
+|         125 | Julia       | Nayer       | JNAYER   | 650.124.1214       | 1987-07-12 | ST_CLERK   |  3200.00 | Shipping         |
+|         126 | Irene       | Mikkilineni | IMIKKILI | 650.124.1224       | 1987-07-13 | ST_CLERK   |  2700.00 | Shipping         |
+|         127 | James       | Landry      | JLANDRY  | 650.124.1334       | 1987-07-14 | ST_CLERK   |  2400.00 | Shipping         |
+|         128 | Steven      | Markle      | SMARKLE  | 650.124.1434       | 1987-07-15 | ST_CLERK   |  2200.00 | Shipping         |
+|         129 | Laura       | Bissot      | LBISSOT  | 650.124.5234       | 1987-07-16 | ST_CLERK   |  3300.00 | Shipping         |
+|         130 | Mozhe       | Atkinson    | MATKINSO | 650.124.6234       | 1987-07-17 | ST_CLERK   |  2800.00 | Shipping         |
+|         131 | James       | Marlow      | JAMRLOW  | 650.124.7234       | 1987-07-18 | ST_CLERK   |  2500.00 | Shipping         |
+|         132 | TJ          | Olson       | TJOLSON  | 650.124.8234       | 1987-07-19 | ST_CLERK   |  2100.00 | Shipping         |
+|         133 | Jason       | Mallin      | JMALLIN  | 650.127.1934       | 1987-07-20 | ST_CLERK   |  3300.00 | Shipping         |
+|         134 | Michael     | Rogers      | MROGERS  | 650.127.1834       | 1987-07-21 | ST_CLERK   |  2900.00 | Shipping         |
+|         135 | Ki          | Gee         | KGEE     | 650.127.1734       | 1987-07-22 | ST_CLERK   |  2400.00 | Shipping         |
+|         136 | Hazel       | Philtanker  | HPHILTAN | 650.127.1634       | 1987-07-23 | ST_CLERK   |  2200.00 | Shipping         |
+|         137 | Renske      | Ladwig      | RLADWIG  | 650.121.1234       | 1987-07-24 | ST_CLERK   |  3600.00 | Shipping         |
+|         138 | Stephen     | Stiles      | SSTILES  | 650.121.2034       | 1987-07-25 | ST_CLERK   |  3200.00 | Shipping         |
+|         139 | John        | Seo         | JSEO     | 650.121.2019       | 1987-07-26 | ST_CLERK   |  2700.00 | Shipping         |
+|         140 | Joshua      | Patel       | JPATEL   | 650.121.1834       | 1987-07-27 | ST_CLERK   |  2500.00 | Shipping         |
+|         141 | Trenna      | Rajs        | TRAJS    | 650.121.8009       | 1987-07-28 | ST_CLERK   |  3500.00 | Shipping         |
+|         142 | Curtis      | Davies      | CDAVIES  | 650.121.2994       | 1987-07-29 | ST_CLERK   |  3100.00 | Shipping         |
+|         143 | Randall     | Matos       | RMATOS   | 650.121.2874       | 1987-07-30 | ST_CLERK   |  2600.00 | Shipping         |
+|         144 | Peter       | Vargas      | PVARGAS  | 650.121.2004       | 1987-07-31 | ST_CLERK   |  2500.00 | Shipping         |
+|         145 | John        | Russell     | JRUSSEL  | 011.44.1344.429268 | 1987-08-01 | SA_MAN     | 14000.00 | Sales            |
+|         146 | Karen       | Partners    | KPARTNER | 011.44.1344.467268 | 1987-08-02 | SA_MAN     | 13500.00 | Sales            |
+|         147 | Alberto     | Errazuriz   | AERRAZUR | 011.44.1344.429278 | 1987-08-03 | SA_MAN     | 12000.00 | Sales            |
+|         148 | Gerald      | Cambrault   | GCAMBRAU | 011.44.1344.619268 | 1987-08-04 | SA_MAN     | 11000.00 | Sales            |
+|         149 | Eleni       | Zlotkey     | EZLOTKEY | 011.44.1344.429018 | 1987-08-05 | SA_MAN     | 10500.00 | Sales            |
+|         150 | Peter       | Tucker      | PTUCKER  | 011.44.1344.129268 | 1987-08-06 | SA_REP     | 10000.00 | Sales            |
+|         151 | David       | Bernstein   | DBERNSTE | 011.44.1344.345268 | 1987-08-07 | SA_REP     |  9500.00 | Sales            |
+|         152 | Peter       | Hall        | PHALL    | 011.44.1344.478968 | 1987-08-08 | SA_REP     |  9000.00 | Sales            |
+|         153 | Christopher | Olsen       | COLSEN   | 011.44.1344.498718 | 1987-08-09 | SA_REP     |  8000.00 | Sales            |
+|         154 | Nanette     | Cambrault   | NCAMBRAU | 011.44.1344.987668 | 1987-08-10 | SA_REP     |  7500.00 | Sales            |
+|         155 | Oliver      | Tuvault     | OTUVAULT | 011.44.1344.486508 | 1987-08-11 | SA_REP     |  7000.00 | Sales            |
+|         156 | Janette     | King        | JKING    | 011.44.1345.429268 | 1987-08-12 | SA_REP     | 10000.00 | Sales            |
+|         157 | Patrick     | Sully       | PSULLY   | 011.44.1345.929268 | 1987-08-13 | SA_REP     |  9500.00 | Sales            |
+|         158 | Allan       | McEwen      | AMCEWEN  | 011.44.1345.829268 | 1987-08-14 | SA_REP     |  9000.00 | Sales            |
+|         159 | Lindsey     | Smith       | LSMITH   | 011.44.1345.729268 | 1987-08-15 | SA_REP     |  8000.00 | Sales            |
+|         160 | Louise      | Doran       | LDORAN   | 011.44.1345.629268 | 1987-08-16 | SA_REP     |  7500.00 | Sales            |
+|         161 | Sarath      | Sewall      | SSEWALL  | 011.44.1345.529268 | 1987-08-17 | SA_REP     |  7000.00 | Sales            |
+|         162 | Clara       | Vishney     | CVISHNEY | 011.44.1346.129268 | 1987-08-18 | SA_REP     | 10500.00 | Sales            |
+|         163 | Danielle    | Greene      | DGREENE  | 011.44.1346.229268 | 1987-08-19 | SA_REP     |  9500.00 | Sales            |
+|         164 | Mattea      | Marvins     | MMARVINS | 011.44.1346.329268 | 1987-08-20 | SA_REP     |  7200.00 | Sales            |
+|         165 | David       | Lee         | DLEE     | 011.44.1346.529268 | 1987-08-21 | SA_REP     |  6800.00 | Sales            |
+|         166 | Sundar      | Ande        | SANDE    | 011.44.1346.629268 | 1987-08-22 | SA_REP     |  6400.00 | Sales            |
+|         167 | Amit        | Banda       | ABANDA   | 011.44.1346.729268 | 1987-08-23 | SA_REP     |  6200.00 | Sales            |
+|         168 | Lisa        | Ozer        | LOZER    | 011.44.1343.929268 | 1987-08-24 | SA_REP     | 11500.00 | Sales            |
+|         169 | Harrison    | Bloom       | HBLOOM   | 011.44.1343.829268 | 1987-08-25 | SA_REP     | 10000.00 | Sales            |
+|         170 | Tayler      | Fox         | TFOX     | 011.44.1343.729268 | 1987-08-26 | SA_REP     |  9600.00 | Sales            |
+|         171 | William     | Smith       | WSMITH   | 011.44.1343.629268 | 1987-08-27 | SA_REP     |  7400.00 | Sales            |
+|         172 | Elizabeth   | Bates       | EBATES   | 011.44.1343.529268 | 1987-08-28 | SA_REP     |  7300.00 | Sales            |
+|         173 | Sundita     | Kumar       | SKUMAR   | 011.44.1343.329268 | 1987-08-29 | SA_REP     |  6100.00 | Sales            |
+|         174 | Ellen       | Abel        | EABEL    | 011.44.1644.429267 | 1987-08-30 | SA_REP     | 11000.00 | Sales            |
+|         175 | Alyssa      | Hutton      | AHUTTON  | 011.44.1644.429266 | 1987-08-31 | SA_REP     |  8800.00 | Sales            |
+|         176 | Jonathon    | Taylor      | JTAYLOR  | 011.44.1644.429265 | 1987-09-01 | SA_REP     |  8600.00 | Sales            |
+|         177 | Jack        | Livingston  | JLIVINGS | 011.44.1644.429264 | 1987-09-02 | SA_REP     |  8400.00 | Sales            |
+|         179 | Charles     | Johnson     | CJOHNSON | 011.44.1644.429262 | 1987-09-04 | SA_REP     |  6200.00 | Sales            |
+|         180 | Winston     | Taylor      | WTAYLOR  | 650.507.9876       | 1987-09-05 | SH_CLERK   |  3200.00 | Shipping         |
+|         181 | Jean        | Fleaur      | JFLEAUR  | 650.507.9877       | 1987-09-06 | SH_CLERK   |  3100.00 | Shipping         |
+|         182 | Martha      | Sullivan    | MSULLIVA | 650.507.9878       | 1987-09-07 | SH_CLERK   |  2500.00 | Shipping         |
+|         183 | Girard      | Geoni       | GGEONI   | 650.507.9879       | 1987-09-08 | SH_CLERK   |  2800.00 | Shipping         |
+|         184 | Nandita     | Sarchand    | NSARCHAN | 650.509.1876       | 1987-09-09 | SH_CLERK   |  4200.00 | Shipping         |
+|         185 | Alexis      | Bull        | ABULL    | 650.509.2876       | 1987-09-10 | SH_CLERK   |  4100.00 | Shipping         |
+|         186 | Julia       | Dellinger   | JDELLING | 650.509.3876       | 1987-09-11 | SH_CLERK   |  3400.00 | Shipping         |
+|         187 | Anthony     | Cabrio      | ACABRIO  | 650.509.4876       | 1987-09-12 | SH_CLERK   |  3000.00 | Shipping         |
+|         188 | Kelly       | Chung       | KCHUNG   | 650.505.1876       | 1987-09-13 | SH_CLERK   |  3800.00 | Shipping         |
+|         189 | Jennifer    | Dilly       | JDILLY   | 650.505.2876       | 1987-09-14 | SH_CLERK   |  3600.00 | Shipping         |
+|         190 | Timothy     | Gates       | TGATES   | 650.505.3876       | 1987-09-15 | SH_CLERK   |  2900.00 | Shipping         |
+|         191 | Randall     | Perkins     | RPERKINS | 650.505.4876       | 1987-09-16 | SH_CLERK   |  2500.00 | Shipping         |
+|         192 | Sarah       | Bell        | SBELL    | 650.501.1876       | 1987-09-17 | SH_CLERK   |  4000.00 | Shipping         |
+|         193 | Britney     | Everett     | BEVERETT | 650.501.2876       | 1987-09-18 | SH_CLERK   |  3900.00 | Shipping         |
+|         194 | Samuel      | McCain      | SMCCAIN  | 650.501.3876       | 1987-09-19 | SH_CLERK   |  3200.00 | Shipping         |
+|         195 | Vance       | Jones       | VJONES   | 650.501.4876       | 1987-09-20 | SH_CLERK   |  2800.00 | Shipping         |
+|         196 | Alana       | Walsh       | AWALSH   | 650.507.9811       | 1987-09-21 | SH_CLERK   |  3100.00 | Shipping         |
+|         197 | Kevin       | Feeney      | KFEENEY  | 650.507.9822       | 1987-09-22 | SH_CLERK   |  3000.00 | Shipping         |
+|         198 | Donald      | OConnell    | DOCONNEL | 650.507.9833       | 1987-09-23 | SH_CLERK   |  2600.00 | Shipping         |
+|         199 | Douglas     | Grant       | DGRANT   | 650.507.9844       | 1987-09-24 | SH_CLERK   |  2600.00 | Shipping         |
+|         200 | Jennifer    | Whalen      | JWHALEN  | 515.123.4444       | 1987-09-25 | AD_ASST    |  4400.00 | Administration   |
+|         201 | Michael     | Hartstein   | MHARTSTE | 515.123.5555       | 1987-09-26 | MK_MAN     | 13000.00 | Marketing        |
+|         202 | Pat         | Fay         | PFAY     | 603.123.6666       | 1987-09-27 | MK_REP     |  6000.00 | Marketing        |
+|         203 | Susan       | Mavris      | SMAVRIS  | 515.123.7777       | 1987-09-28 | HR_REP     |  6500.00 | Human Resources  |
+|         204 | Hermann     | Baer        | HBAER    | 515.123.8888       | 1987-09-29 | PR_REP     | 10000.00 | Public Relations |
+|         205 | Shelley     | Higgins     | SHIGGINS | 515.123.8080       | 1987-09-30 | AC_MGR     | 12000.00 | Accounting       |
+|         206 | William     | Gietz       | WGIETZ   | 515.123.8181       | 1987-10-01 | AC_ACCOUNT |  8300.00 | Accounting       |
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+------------------+
+106 rows in set (0.0135 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     e.EMPLOYEE_ID AS Manager_ID,
+                                        ->     e.FIRST_NAME AS Manager_First_Name,
+                                        ->     e.LAST_NAME AS Manager_Last_Name,
+                                        ->     d.DEPARTMENT_NAME
+                                        -> FROM
+                                        ->     employees e
+                                        -> JOIN
+                                        ->     departments d
+                                        -> ON
+                                        ->     e.EMPLOYEE_ID = d.MANAGER_ID
+                                        -> ORDER BY
+                                        ->     e.EMPLOYEE_ID;
++------------+--------------------+-------------------+------------------+
+| Manager_ID | Manager_First_Name | Manager_Last_Name | DEPARTMENT_NAME  |
++------------+--------------------+-------------------+------------------+
+|        100 | Steven             | King              | Executive        |
+|        103 | Alexander          | Hunold            | IT               |
+|        108 | Nancy              | Greenberg         | Finance          |
+|        114 | Den                | Raphaely          | Purchasing       |
+|        121 | Adam               | Fripp             | Shipping         |
+|        145 | John               | Russell           | Sales            |
+|        200 | Jennifer           | Whalen            | Administration   |
+|        201 | Michael            | Hartstein         | Marketing        |
+|        203 | Susan              | Mavris            | Human Resources  |
+|        204 | Hermann            | Baer              | Public Relations |
+|        205 | Shelley            | Higgins           | Accounting       |
++------------+--------------------+-------------------+------------------+
+11 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     e.EMPLOYEE_ID AS Employee_ID,
+                                        ->     e.FIRST_NAME AS Employee_First_Name,
+                                        ->     e.LAST_NAME AS Employee_Last_Name,
+                                        ->     j.JOB_TITLE AS Job_Title,
+                                        ->     d.DEPARTMENT_NAME AS Department,
+                                        ->     jh.START_DATE AS Start_Date,
+                                        ->     jh.END_DATE AS End_Date
+                                        -> FROM
+                                        ->     employees e
+                                        -> JOIN
+                                        ->     job_history jh ON e.EMPLOYEE_ID = jh.EMPLOYEE_ID
+                                        -> JOIN
+                                        ->     jobs j ON jh.JOB_ID = j.JOB_ID
+                                        -> JOIN
+                                        ->     departments d ON jh.DEPARTMENT_ID = d.DEPARTMENT_ID
+                                        -> ORDER BY
+                                        ->     e.EMPLOYEE_ID, jh.START_DATE;
++-------------+---------------------+--------------------+--------------------------+------------+------------+------------+
+| Employee_ID | Employee_First_Name | Employee_Last_Name | Job_Title                | Department | Start_Date | End_Date   |
++-------------+---------------------+--------------------+--------------------------+------------+------------+------------+
+|         101 | Neena               | Kochhar            | Public Accountant        | Accounting | 1989-09-21 | 1993-10-27 |
+|         101 | Neena               | Kochhar            | Accounting Manager       | Accounting | 1993-10-28 | 1997-03-15 |
+|         102 | Lex                 | De Haan            | Programmer               | IT         | 1993-01-13 | 1998-07-24 |
+|         114 | Den                 | Raphaely           | Stock Clerk              | Shipping   | 1998-03-24 | 1999-12-31 |
+|         122 | Payam               | Kaufling           | Stock Clerk              | Shipping   | 1999-01-01 | 1999-12-31 |
+|         176 | Jonathon            | Taylor             | Sales Representative     | Sales      | 1998-03-24 | 1998-12-31 |
+|         176 | Jonathon            | Taylor             | Sales Manager            | Sales      | 1999-01-01 | 1999-12-31 |
+|         200 | Jennifer            | Whalen             | Administration Assistant | Executive  | 1987-09-17 | 1993-06-17 |
+|         200 | Jennifer            | Whalen             | Public Accountant        | Executive  | 1994-07-01 | 1998-12-31 |
+|         201 | Michael             | Hartstein          | Marketing Representative | Marketing  | 1996-02-17 | 1999-12-19 |
++-------------+---------------------+--------------------+--------------------------+------------+------------+------------+
+10 rows in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     d.DEPARTMENT_NAME AS Department,
+                                        ->     l.STREET_ADDRESS AS Street,
+                                        ->     l.CITY AS City,
+                                        ->     c.COUNTRY_NAME AS Country,
+                                        ->     r.REGION_NAME AS Region
+                                        -> FROM
+                                        ->     departments d
+                                        -> JOIN
+                                        ->     locations l ON d.LOCATION_ID = l.LOCATION_ID
+                                        -> JOIN
+                                        ->     countries c ON l.COUNTRY_ID = c.COUNTRY_ID
+                                        -> JOIN
+                                        ->     regions r ON c.REGION_ID = r.REGION_ID
+                                        -> ORDER BY
+                                        ->     d.DEPARTMENT_NAME;
++----------------------+-----------------------+---------------------+--------------------------+----------+
+| Department           | Street                | City                | Country                  | Region   |
++----------------------+-----------------------+---------------------+--------------------------+----------+
+| Accounting           | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Administration       | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Benefits             | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Construction         | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Contracting          | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Control And Credit   | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Corporate Tax        | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Executive            | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Finance              | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Government Sales     | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Human Resources      | 8204 Arthur St        | London              | United Kingdom           | Europe   |
+| IT                   | 2014 Jabberwocky Rd   | Southlake           | United States of America | Americas |
+| IT Helpdesk          | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| IT Support           | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Manufacturing        | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Marketing            | 147 Spadina Ave       | Toronto             | Canada                   | Americas |
+| NOC                  | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Operations           | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Payroll              | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Public Relations     | Schwanthalerstr. 7031 | Munich              | Germany                  | Europe   |
+| Purchasing           | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Recruiting           | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Retail Sales         | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Shareholder Services | 2004 Charade Rd       | Seattle             | United States of America | Americas |
+| Shipping             | 2011 Interiors Blvd   | South San Francisco | United States of America | Americas |
+| Treasury             | 2004 Charade Rd       | Seattle             | United States of America | Americas |
++----------------------+-----------------------+---------------------+--------------------------+----------+
+26 rows in set (0.0066 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT m.nombre AS manager, e.nombre AS empleado
+                                        -> FROM empleados m
+                                        -> JOIN empleados e ON m.empleado_id = e.manager_id
+                                        -> WHERE m.es_manager = 1;
+ERROR: 1146 (42S02): Table 'empresa.empleados' doesn't exist
+ MySQL  localhost:3306 ssl  empresa  SQL >
+ MySQL  localhost:3306 ssl  empresa  SQL > show tables;
++-------------------+
+| Tables_in_empresa |
++-------------------+
+| countries         |
+| departments       |
+| employees         |
+| job_history       |
+| jobs              |
+| locations         |
+| regions           |
++-------------------+
+7 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     managers.first_name AS Manager,
+                                        ->     managers.last_name AS LastName,
+                                        ->     employees.first_name AS Employee,
+                                        ->     employees.last_name AS EmployeeLastName
+                                        -> FROM employees AS managers
+                                        -> JOIN employees ON managers.id = employees.manager_id
+                                        -> WHERE managers.is_manager = TRUE;
+ERROR: 1054 (42S22): Unknown column 'managers.is_manager' in 'where clause'
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     employees.first_name AS Employee,
+                                        ->     employees.last_name AS EmployeeLastName,
+                                        ->     managers.first_name AS Manager,
+                                        ->     managers.last_name AS ManagerLastName
+                                        -> FROM employees
+                                        -> LEFT JOIN employees AS managers ON employees.manager_id = managers.id;
+ERROR: 1054 (42S22): Unknown column 'managers.id' in 'on clause'
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     e.first_name AS Employee,
+                                        ->     e.last_name AS EmployeeLastName,
+                                        ->     m.first_name AS Manager,
+                                        ->     m.last_name AS ManagerLastName
+                                        -> FROM employees e
+                                        -> LEFT JOIN employees m ON e.manager_id = m.id;
+ERROR: 1054 (42S22): Unknown column 'm.id' in 'on clause'
+ MySQL  localhost:3306 ssl  empresa  SQL > desc employees;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| EMPLOYEE_ID    | decimal(6,0) | NO   | PRI | 0       |       |
+| FIRST_NAME     | varchar(20)  | YES  |     | NULL    |       |
+| LAST_NAME      | varchar(25)  | NO   | MUL | NULL    |       |
+| EMAIL          | varchar(25)  | NO   | UNI | NULL    |       |
+| PHONE_NUMBER   | varchar(20)  | YES  |     | NULL    |       |
+| HIRE_DATE      | date         | NO   |     | NULL    |       |
+| JOB_ID         | varchar(10)  | NO   | MUL | NULL    |       |
+| SALARY         | decimal(8,2) | YES  |     | NULL    |       |
+| COMMISSION_PCT | decimal(2,2) | YES  |     | NULL    |       |
+| MANAGER_ID     | decimal(6,0) | YES  | MUL | NULL    |       |
+| DEPARTMENT_ID  | decimal(4,0) | YES  | MUL | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+11 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     e.first_name AS Employee,
+                                        ->     e.last_name AS EmployeeLastName,
+                                        ->     m.first_name AS Manager,
+                                        ->     m.last_name AS ManagerLastName
+                                        -> FROM employees e
+                                        -> LEFT JOIN employees m ON e.manager_id = m.employee_id;
++-------------+------------------+-----------+-----------------+
+| Employee    | EmployeeLastName | Manager   | ManagerLastName |
++-------------+------------------+-----------+-----------------+
+| Steven      | King             | NULL      | NULL            |
+| Neena       | Kochhar          | Steven    | King            |
+| Lex         | De Haan          | Steven    | King            |
+| Alexander   | Hunold           | Lex       | De Haan         |
+| Bruce       | Ernst            | Alexander | Hunold          |
+| David       | Austin           | Alexander | Hunold          |
+| Valli       | Pataballa        | Alexander | Hunold          |
+| Diana       | Lorentz          | Alexander | Hunold          |
+| Nancy       | Greenberg        | Neena     | Kochhar         |
+| Daniel      | Faviet           | Nancy     | Greenberg       |
+| John        | Chen             | Nancy     | Greenberg       |
+| Ismael      | Sciarra          | Nancy     | Greenberg       |
+| Jose Manuel | Urman            | Nancy     | Greenberg       |
+| Luis        | Popp             | Nancy     | Greenberg       |
+| Den         | Raphaely         | Steven    | King            |
+| Alexander   | Khoo             | Den       | Raphaely        |
+| Shelli      | Baida            | Den       | Raphaely        |
+| Sigal       | Tobias           | Den       | Raphaely        |
+| Guy         | Himuro           | Den       | Raphaely        |
+| Karen       | Colmenares       | Den       | Raphaely        |
+| Matthew     | Weiss            | Steven    | King            |
+| Adam        | Fripp            | Steven    | King            |
+| Payam       | Kaufling         | Steven    | King            |
+| Shanta      | Vollman          | Steven    | King            |
+| Kevin       | Mourgos          | Steven    | King            |
+| Julia       | Nayer            | Matthew   | Weiss           |
+| Irene       | Mikkilineni      | Matthew   | Weiss           |
+| James       | Landry           | Matthew   | Weiss           |
+| Steven      | Markle           | Matthew   | Weiss           |
+| Laura       | Bissot           | Adam      | Fripp           |
+| Mozhe       | Atkinson         | Adam      | Fripp           |
+| James       | Marlow           | Adam      | Fripp           |
+| TJ          | Olson            | Adam      | Fripp           |
+| Jason       | Mallin           | Payam     | Kaufling        |
+| Michael     | Rogers           | Payam     | Kaufling        |
+| Ki          | Gee              | Payam     | Kaufling        |
+| Hazel       | Philtanker       | Payam     | Kaufling        |
+| Renske      | Ladwig           | Shanta    | Vollman         |
+| Stephen     | Stiles           | Shanta    | Vollman         |
+| John        | Seo              | Shanta    | Vollman         |
+| Joshua      | Patel            | Shanta    | Vollman         |
+| Trenna      | Rajs             | Kevin     | Mourgos         |
+| Curtis      | Davies           | Kevin     | Mourgos         |
+| Randall     | Matos            | Kevin     | Mourgos         |
+| Peter       | Vargas           | Kevin     | Mourgos         |
+| John        | Russell          | Steven    | King            |
+| Karen       | Partners         | Steven    | King            |
+| Alberto     | Errazuriz        | Steven    | King            |
+| Gerald      | Cambrault        | Steven    | King            |
+| Eleni       | Zlotkey          | Steven    | King            |
+| Peter       | Tucker           | John      | Russell         |
+| David       | Bernstein        | John      | Russell         |
+| Peter       | Hall             | John      | Russell         |
+| Christopher | Olsen            | John      | Russell         |
+| Nanette     | Cambrault        | John      | Russell         |
+| Oliver      | Tuvault          | John      | Russell         |
+| Janette     | King             | Karen     | Partners        |
+| Patrick     | Sully            | Karen     | Partners        |
+| Allan       | McEwen           | Karen     | Partners        |
+| Lindsey     | Smith            | Karen     | Partners        |
+| Louise      | Doran            | Karen     | Partners        |
+| Sarath      | Sewall           | Karen     | Partners        |
+| Clara       | Vishney          | Alberto   | Errazuriz       |
+| Danielle    | Greene           | Alberto   | Errazuriz       |
+| Mattea      | Marvins          | Alberto   | Errazuriz       |
+| David       | Lee              | Alberto   | Errazuriz       |
+| Sundar      | Ande             | Alberto   | Errazuriz       |
+| Amit        | Banda            | Alberto   | Errazuriz       |
+| Lisa        | Ozer             | Gerald    | Cambrault       |
+| Harrison    | Bloom            | Gerald    | Cambrault       |
+| Tayler      | Fox              | Gerald    | Cambrault       |
+| William     | Smith            | Gerald    | Cambrault       |
+| Elizabeth   | Bates            | Gerald    | Cambrault       |
+| Sundita     | Kumar            | Gerald    | Cambrault       |
+| Ellen       | Abel             | Eleni     | Zlotkey         |
+| Alyssa      | Hutton           | Eleni     | Zlotkey         |
+| Jonathon    | Taylor           | Eleni     | Zlotkey         |
+| Jack        | Livingston       | Eleni     | Zlotkey         |
+| Kimberely   | Grant            | Eleni     | Zlotkey         |
+| Charles     | Johnson          | Eleni     | Zlotkey         |
+| Winston     | Taylor           | Matthew   | Weiss           |
+| Jean        | Fleaur           | Matthew   | Weiss           |
+| Martha      | Sullivan         | Matthew   | Weiss           |
+| Girard      | Geoni            | Matthew   | Weiss           |
+| Nandita     | Sarchand         | Adam      | Fripp           |
+| Alexis      | Bull             | Adam      | Fripp           |
+| Julia       | Dellinger        | Adam      | Fripp           |
+| Anthony     | Cabrio           | Adam      | Fripp           |
+| Kelly       | Chung            | Payam     | Kaufling        |
+| Jennifer    | Dilly            | Payam     | Kaufling        |
+| Timothy     | Gates            | Payam     | Kaufling        |
+| Randall     | Perkins          | Payam     | Kaufling        |
+| Sarah       | Bell             | Shanta    | Vollman         |
+| Britney     | Everett          | Shanta    | Vollman         |
+| Samuel      | McCain           | Shanta    | Vollman         |
+| Vance       | Jones            | Shanta    | Vollman         |
+| Alana       | Walsh            | Kevin     | Mourgos         |
+| Kevin       | Feeney           | Kevin     | Mourgos         |
+| Donald      | OConnell         | Kevin     | Mourgos         |
+| Douglas     | Grant            | Kevin     | Mourgos         |
+| Jennifer    | Whalen           | Neena     | Kochhar         |
+| Michael     | Hartstein        | Steven    | King            |
+| Pat         | Fay              | Michael   | Hartstein       |
+| Susan       | Mavris           | Neena     | Kochhar         |
+| Hermann     | Baer             | Neena     | Kochhar         |
+| Shelley     | Higgins          | Neena     | Kochhar         |
+| William     | Gietz            | Shelley   | Higgins         |
++-------------+------------------+-----------+-----------------+
+107 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     e.first_name AS Employee,
+                                        ->     e.last_name AS EmployeeLastName,
+                                        ->     m.first_name AS Manager,
+                                        ->     m.last_name AS ManagerLastName
+                                        -> FROM employees e
+                                        -> LEFT JOIN employees m ON e.manager_id = m.employee_id;
++-------------+------------------+-----------+-----------------+
+| Employee    | EmployeeLastName | Manager   | ManagerLastName |
++-------------+------------------+-----------+-----------------+
+| Steven      | King             | NULL      | NULL            |
+| Neena       | Kochhar          | Steven    | King            |
+| Lex         | De Haan          | Steven    | King            |
+| Alexander   | Hunold           | Lex       | De Haan         |
+| Bruce       | Ernst            | Alexander | Hunold          |
+| David       | Austin           | Alexander | Hunold          |
+| Valli       | Pataballa        | Alexander | Hunold          |
+| Diana       | Lorentz          | Alexander | Hunold          |
+| Nancy       | Greenberg        | Neena     | Kochhar         |
+| Daniel      | Faviet           | Nancy     | Greenberg       |
+| John        | Chen             | Nancy     | Greenberg       |
+| Ismael      | Sciarra          | Nancy     | Greenberg       |
+| Jose Manuel | Urman            | Nancy     | Greenberg       |
+| Luis        | Popp             | Nancy     | Greenberg       |
+| Den         | Raphaely         | Steven    | King            |
+| Alexander   | Khoo             | Den       | Raphaely        |
+| Shelli      | Baida            | Den       | Raphaely        |
+| Sigal       | Tobias           | Den       | Raphaely        |
+| Guy         | Himuro           | Den       | Raphaely        |
+| Karen       | Colmenares       | Den       | Raphaely        |
+| Matthew     | Weiss            | Steven    | King            |
+| Adam        | Fripp            | Steven    | King            |
+| Payam       | Kaufling         | Steven    | King            |
+| Shanta      | Vollman          | Steven    | King            |
+| Kevin       | Mourgos          | Steven    | King            |
+| Julia       | Nayer            | Matthew   | Weiss           |
+| Irene       | Mikkilineni      | Matthew   | Weiss           |
+| James       | Landry           | Matthew   | Weiss           |
+| Steven      | Markle           | Matthew   | Weiss           |
+| Laura       | Bissot           | Adam      | Fripp           |
+| Mozhe       | Atkinson         | Adam      | Fripp           |
+| James       | Marlow           | Adam      | Fripp           |
+| TJ          | Olson            | Adam      | Fripp           |
+| Jason       | Mallin           | Payam     | Kaufling        |
+| Michael     | Rogers           | Payam     | Kaufling        |
+| Ki          | Gee              | Payam     | Kaufling        |
+| Hazel       | Philtanker       | Payam     | Kaufling        |
+| Renske      | Ladwig           | Shanta    | Vollman         |
+| Stephen     | Stiles           | Shanta    | Vollman         |
+| John        | Seo              | Shanta    | Vollman         |
+| Joshua      | Patel            | Shanta    | Vollman         |
+| Trenna      | Rajs             | Kevin     | Mourgos         |
+| Curtis      | Davies           | Kevin     | Mourgos         |
+| Randall     | Matos            | Kevin     | Mourgos         |
+| Peter       | Vargas           | Kevin     | Mourgos         |
+| John        | Russell          | Steven    | King            |
+| Karen       | Partners         | Steven    | King            |
+| Alberto     | Errazuriz        | Steven    | King            |
+| Gerald      | Cambrault        | Steven    | King            |
+| Eleni       | Zlotkey          | Steven    | King            |
+| Peter       | Tucker           | John      | Russell         |
+| David       | Bernstein        | John      | Russell         |
+| Peter       | Hall             | John      | Russell         |
+| Christopher | Olsen            | John      | Russell         |
+| Nanette     | Cambrault        | John      | Russell         |
+| Oliver      | Tuvault          | John      | Russell         |
+| Janette     | King             | Karen     | Partners        |
+| Patrick     | Sully            | Karen     | Partners        |
+| Allan       | McEwen           | Karen     | Partners        |
+| Lindsey     | Smith            | Karen     | Partners        |
+| Louise      | Doran            | Karen     | Partners        |
+| Sarath      | Sewall           | Karen     | Partners        |
+| Clara       | Vishney          | Alberto   | Errazuriz       |
+| Danielle    | Greene           | Alberto   | Errazuriz       |
+| Mattea      | Marvins          | Alberto   | Errazuriz       |
+| David       | Lee              | Alberto   | Errazuriz       |
+| Sundar      | Ande             | Alberto   | Errazuriz       |
+| Amit        | Banda            | Alberto   | Errazuriz       |
+| Lisa        | Ozer             | Gerald    | Cambrault       |
+| Harrison    | Bloom            | Gerald    | Cambrault       |
+| Tayler      | Fox              | Gerald    | Cambrault       |
+| William     | Smith            | Gerald    | Cambrault       |
+| Elizabeth   | Bates            | Gerald    | Cambrault       |
+| Sundita     | Kumar            | Gerald    | Cambrault       |
+| Ellen       | Abel             | Eleni     | Zlotkey         |
+| Alyssa      | Hutton           | Eleni     | Zlotkey         |
+| Jonathon    | Taylor           | Eleni     | Zlotkey         |
+| Jack        | Livingston       | Eleni     | Zlotkey         |
+| Kimberely   | Grant            | Eleni     | Zlotkey         |
+| Charles     | Johnson          | Eleni     | Zlotkey         |
+| Winston     | Taylor           | Matthew   | Weiss           |
+| Jean        | Fleaur           | Matthew   | Weiss           |
+| Martha      | Sullivan         | Matthew   | Weiss           |
+| Girard      | Geoni            | Matthew   | Weiss           |
+| Nandita     | Sarchand         | Adam      | Fripp           |
+| Alexis      | Bull             | Adam      | Fripp           |
+| Julia       | Dellinger        | Adam      | Fripp           |
+| Anthony     | Cabrio           | Adam      | Fripp           |
+| Kelly       | Chung            | Payam     | Kaufling        |
+| Jennifer    | Dilly            | Payam     | Kaufling        |
+| Timothy     | Gates            | Payam     | Kaufling        |
+| Randall     | Perkins          | Payam     | Kaufling        |
+| Sarah       | Bell             | Shanta    | Vollman         |
+| Britney     | Everett          | Shanta    | Vollman         |
+| Samuel      | McCain           | Shanta    | Vollman         |
+| Vance       | Jones            | Shanta    | Vollman         |
+| Alana       | Walsh            | Kevin     | Mourgos         |
+| Kevin       | Feeney           | Kevin     | Mourgos         |
+| Donald      | OConnell         | Kevin     | Mourgos         |
+| Douglas     | Grant            | Kevin     | Mourgos         |
+| Jennifer    | Whalen           | Neena     | Kochhar         |
+| Michael     | Hartstein        | Steven    | King            |
+| Pat         | Fay              | Michael   | Hartstein       |
+| Susan       | Mavris           | Neena     | Kochhar         |
+| Hermann     | Baer             | Neena     | Kochhar         |
+| Shelley     | Higgins          | Neena     | Kochhar         |
+| William     | Gietz            | Shelley   | Higgins         |
++-------------+------------------+-----------+-----------------+
+107 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT
+                                        ->     r.region_name AS Region,
+                                        ->     e.first_name AS Employee,
+                                        ->     e.last_name AS EmployeeLastName
+                                        -> FROM employees e
+                                        -> JOIN departments d ON e.department_id = d.department_id
+                                        -> JOIN locations l ON d.location_id = l.location_id
+                                        -> JOIN regions r ON l.region_id = r.region_id;
+ERROR: 1054 (42S22): Unknown column 'l.region_id' in 'on clause'
+ MySQL  localhost:3306 ssl  empresa  SQL > desc locations;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| LOCATION_ID    | decimal(4,0) | NO   | PRI | 0       |       |
+| STREET_ADDRESS | varchar(40)  | YES  |     | NULL    |       |
+| POSTAL_CODE    | varchar(12)  | YES  |     | NULL    |       |
+| CITY           | varchar(30)  | NO   | MUL | NULL    |       |
+| STATE_PROVINCE | varchar(25)  | YES  | MUL | NULL    |       |
+| COUNTRY_ID     | varchar(2)   | YES  | MUL | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+6 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT r.REGION_NAME, e.FIRST_NAME AS Employee
+                                        -> FROM employees e
+                                        -> JOIN departments d ON e.DEPARTMENT_ID = d.DEPARTMENT_ID
+                                        -> JOIN locations l ON d.LOCATION_ID = l.LOCATION_ID
+                                        -> JOIN countries c ON l.COUNTRY_ID = c.COUNTRY_ID
+                                        -> JOIN regions r ON c.REGION_ID = r.REGION_ID;
++-------------+-------------+
+| REGION_NAME | Employee    |
++-------------+-------------+
+| Americas    | Alexander   |
+| Americas    | Bruce       |
+| Americas    | David       |
+| Americas    | Valli       |
+| Americas    | Diana       |
+| Americas    | Matthew     |
+| Americas    | Adam        |
+| Americas    | Payam       |
+| Americas    | Shanta      |
+| Americas    | Kevin       |
+| Americas    | Julia       |
+| Americas    | Irene       |
+| Americas    | James       |
+| Americas    | Steven      |
+| Americas    | Laura       |
+| Americas    | Mozhe       |
+| Americas    | James       |
+| Americas    | TJ          |
+| Americas    | Jason       |
+| Americas    | Michael     |
+| Americas    | Ki          |
+| Americas    | Hazel       |
+| Americas    | Renske      |
+| Americas    | Stephen     |
+| Americas    | John        |
+| Americas    | Joshua      |
+| Americas    | Trenna      |
+| Americas    | Curtis      |
+| Americas    | Randall     |
+| Americas    | Peter       |
+| Americas    | Winston     |
+| Americas    | Jean        |
+| Americas    | Martha      |
+| Americas    | Girard      |
+| Americas    | Nandita     |
+| Americas    | Alexis      |
+| Americas    | Julia       |
+| Americas    | Anthony     |
+| Americas    | Kelly       |
+| Americas    | Jennifer    |
+| Americas    | Timothy     |
+| Americas    | Randall     |
+| Americas    | Sarah       |
+| Americas    | Britney     |
+| Americas    | Samuel      |
+| Americas    | Vance       |
+| Americas    | Alana       |
+| Americas    | Kevin       |
+| Americas    | Donald      |
+| Americas    | Douglas     |
+| Americas    | Jennifer    |
+| Americas    | Den         |
+| Americas    | Alexander   |
+| Americas    | Shelli      |
+| Americas    | Sigal       |
+| Americas    | Guy         |
+| Americas    | Karen       |
+| Americas    | Steven      |
+| Americas    | Neena       |
+| Americas    | Lex         |
+| Americas    | Nancy       |
+| Americas    | Daniel      |
+| Americas    | John        |
+| Americas    | Ismael      |
+| Americas    | Jose Manuel |
+| Americas    | Luis        |
+| Americas    | Shelley     |
+| Americas    | William     |
+| Americas    | Michael     |
+| Americas    | Pat         |
+| Europe      | Susan       |
+| Europe      | Hermann     |
++-------------+-------------+
+72 rows in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT r.REGION_NAME, d.DEPARTMENT_NAME
+                                        -> FROM departments d
+                                        -> JOIN locations l ON d.LOCATION_ID = l.LOCATION_ID
+                                        -> JOIN countries c ON l.COUNTRY_ID = c.COUNTRY_ID
+                                        -> JOIN regions r ON c.REGION_ID = r.REGION_ID;
++-------------+----------------------+
+| REGION_NAME | DEPARTMENT_NAME      |
++-------------+----------------------+
+| Americas    | Administration       |
+| Americas    | Marketing            |
+| Americas    | Purchasing           |
+| Europe      | Human Resources      |
+| Americas    | Shipping             |
+| Americas    | IT                   |
+| Europe      | Public Relations     |
+| Americas    | Executive            |
+| Americas    | Finance              |
+| Americas    | Accounting           |
+| Americas    | Treasury             |
+| Americas    | Corporate Tax        |
+| Americas    | Control And Credit   |
+| Americas    | Shareholder Services |
+| Americas    | Benefits             |
+| Americas    | Manufacturing        |
+| Americas    | Construction         |
+| Americas    | Contracting          |
+| Americas    | Operations           |
+| Americas    | IT Support           |
+| Americas    | NOC                  |
+| Americas    | IT Helpdesk          |
+| Americas    | Government Sales     |
+| Americas    | Retail Sales         |
+| Americas    | Recruiting           |
+| Americas    | Payroll              |
++-------------+----------------------+
+26 rows in set (0.0013 sec)
